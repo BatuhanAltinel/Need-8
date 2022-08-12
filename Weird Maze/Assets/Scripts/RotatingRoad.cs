@@ -36,10 +36,18 @@ public class RotatingRoad : MonoBehaviour
                 if(lastFingerPos.x < firstFingerPos.x)
                 {
                     transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
+                    if (transform.rotation.z >= 90)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, -90);
+                    }
                     Debug.Log("Turning left");
                 }else if(lastFingerPos.x > firstFingerPos.x)
                 {
                     transform.Rotate(0, 0, -rotateSpeed * Time.deltaTime);
+                    if (transform.rotation.z >= 90)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, 90);
+                    }
                     Debug.Log("Turning right");
                 }
             }
