@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637959045431546697
-    m_Hash: 1971760904
+      ticks: 637959063828115109
+    m_Hash: 2683468166
   m_LockFileStatus:
     m_FilePath: D:/BATU/GitHub Projects/Weird-Maze/Weird Maze/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637959046775647908
-    m_Hash: 3695321416
+      ticks: 637959063828896749
+    m_Hash: 3621376858
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -448,6 +448,138 @@ m_PackageAssets:
         type: git
         url: https://github.com/Unity-Technologies/com.unity.ide.vscode.git
         revision: b0740c80bfc2440527c317109f7c3d9100132722
+        path: 
+    - packageId: com.unity.inputsystem@1.3.0
+      testable: 0
+      isDirectDependency: 1
+      version: 1.3.0
+      source: 1
+      resolvedPath: D:\BATU\GitHub Projects\Weird-Maze\Weird Maze\Library\PackageCache\com.unity.inputsystem@1.3.0
+      assetPath: Packages/com.unity.inputsystem
+      name: com.unity.inputsystem
+      displayName: Input System
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: 
+      description: A new input system which can be used as a more extensible and
+        customizable alternative to Unity's classic input system in UnityEngine.Input.
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 0.1.2-preview
+        - 0.2.0-preview
+        - 0.2.1-preview
+        - 0.2.6-preview
+        - 0.2.8-preview
+        - 0.2.10-preview
+        - 0.9.0-preview
+        - 0.9.1-preview
+        - 0.9.2-preview
+        - 0.9.3-preview
+        - 0.9.4-preview
+        - 0.9.5-preview
+        - 0.9.6-preview
+        - 1.0.0-preview
+        - 1.0.0-preview.1
+        - 1.0.0-preview.2
+        - 1.0.0-preview.3
+        - 1.0.0-preview.4
+        - 1.0.0-preview.5
+        - 1.0.0-preview.6
+        - 1.0.0-preview.7
+        - 1.0.0
+        - 1.0.1
+        - 1.0.2
+        - 1.1.0-pre.5
+        - 1.1.0-pre.6
+        - 1.1.0-preview.1
+        - 1.1.0-preview.2
+        - 1.1.0-preview.3
+        - 1.1.1
+        - 1.2.0
+        - 1.3.0
+        - 1.4.1
+        compatible:
+        - 0.1.2-preview
+        - 0.2.0-preview
+        - 0.2.1-preview
+        - 0.2.6-preview
+        - 0.2.8-preview
+        - 0.2.10-preview
+        - 0.9.0-preview
+        - 0.9.1-preview
+        - 0.9.2-preview
+        - 0.9.3-preview
+        - 0.9.4-preview
+        - 0.9.5-preview
+        - 0.9.6-preview
+        - 1.0.0-preview
+        - 1.0.0-preview.1
+        - 1.0.0-preview.2
+        - 1.0.0-preview.3
+        - 1.0.0-preview.4
+        - 1.0.0-preview.5
+        - 1.0.0-preview.6
+        - 1.0.0-preview.7
+        - 1.0.0
+        - 1.0.1
+        - 1.0.2
+        - 1.1.0-pre.5
+        - 1.1.0-pre.6
+        - 1.1.0-preview.1
+        - 1.1.0-preview.2
+        - 1.1.0-preview.3
+        - 1.1.1
+        - 1.2.0
+        - 1.3.0
+        - 1.4.1
+        verified: 1.3.0
+      dependencies:
+      - name: com.unity.modules.uielements
+        version: 1.0.0
+      resolvedDependencies:
+      - name: com.unity.modules.uielements
+        version: 1.0.0
+      - name: com.unity.modules.ui
+        version: 1.0.0
+      - name: com.unity.modules.imgui
+        version: 1.0.0
+      - name: com.unity.modules.jsonserialize
+        version: 1.0.0
+      - name: com.unity.modules.uielementsnative
+        version: 1.0.0
+      keywords:
+      - input
+      - events
+      - keyboard
+      - mouse
+      - gamepad
+      - touch
+      - vr
+      - xr
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 637769972190000000
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: https://github.com/Unity-Technologies/InputSystem.git
+        revision: 76d3fd182183dff9e9793431de614fd1e69e363c
         path: 
     - packageId: com.unity.mobile.android-logcat@1.3.2
       testable: 0
