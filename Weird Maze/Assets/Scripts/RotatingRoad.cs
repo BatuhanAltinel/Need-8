@@ -10,7 +10,9 @@ public class RotatingRoad : MonoBehaviour
     private Vector2 firstFingerPos;
     private Vector2 lastFingerPos;
     private Touch touch;
+
     private bool isRotated = false;
+    private bool distanceConfirmed = false;
 
     private int currentAngle = 0;
 
@@ -38,20 +40,22 @@ public class RotatingRoad : MonoBehaviour
                 firstFingerPos = touch.position;
                 isRotated = true;
             }
-            if(touch.phase == TouchPhase.Moved)
+            if(touch.phase == TouchPhase.Moved && !distanceConfirmed)
             {
                 lastFingerPos = touch.position + touch.deltaPosition;
                 Debug.Log("Finger moving");
-
+                float distance = firstFingerPos.x - lastFingerPos.x;
                 if(lastFingerPos.x < firstFingerPos.x && isRotated)
                 {
                     currentAngle += 90;
                     _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
                     transform.rotation = Quaternion.Lerp(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
-
                     isRotated = false;
-
                     Debug.Log("Turning left");
+                    if(Mathf.Abs(distance) > 10)
+                    {
+                        distanceConfirmed = true;
+                    }
                 }else if(lastFingerPos.x > firstFingerPos.x && isRotated)
                 {
                     currentAngle -= 90;
@@ -59,11 +63,16 @@ public class RotatingRoad : MonoBehaviour
                     transform.rotation = Quaternion.Lerp(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
                     isRotated = false;
                     Debug.Log("Turning right");
+                    if (Mathf.Abs(distance) > 10)
+                    {
+                        distanceConfirmed = true;
+                    }
                 }
             }
             if (touch.phase == TouchPhase.Ended)
             {
                 isRotated = false;
+                distanceConfirmed = false;
             }
         }
     }
