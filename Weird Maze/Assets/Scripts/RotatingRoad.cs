@@ -5,11 +5,20 @@ using UnityEngine;
 
 public class RotatingRoad : MonoBehaviour
 {
-    [SerializeField] private float rotateSpeed = 120f;
+    [SerializeField] private float rotateSpeedKeyboard = 120f;
 
     private Vector2 firstFingerPos;
     private Vector2 lastFingerPos;
     private Touch touch;
+    private bool isRotated = false;
+
+    private int currentAngle = 0;
+
+    private Quaternion _targetRot = Quaternion.identity;
+
+    [SerializeField]
+    private float _rotateSpeed = 30f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,29 +36,34 @@ public class RotatingRoad : MonoBehaviour
             if(touch.phase == TouchPhase.Began)
             {
                 firstFingerPos = touch.position;
+                isRotated = true;
             }
             if(touch.phase == TouchPhase.Moved)
             {
                 lastFingerPos = touch.position + touch.deltaPosition;
                 Debug.Log("Finger moving");
 
-                if(lastFingerPos.x < firstFingerPos.x)
+                if(lastFingerPos.x < firstFingerPos.x && isRotated)
                 {
-                    transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
-                    if (transform.rotation.z >= 90)
-                    {
-                        transform.rotation = Quaternion.Euler(0, 0, -90);
-                    }
+                    currentAngle += 90;
+                    _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+
+                    isRotated = false;
+
                     Debug.Log("Turning left");
-                }else if(lastFingerPos.x > firstFingerPos.x)
+                }else if(lastFingerPos.x > firstFingerPos.x && isRotated)
                 {
-                    transform.Rotate(0, 0, -rotateSpeed * Time.deltaTime);
-                    if (transform.rotation.z >= 90)
-                    {
-                        transform.rotation = Quaternion.Euler(0, 0, 90);
-                    }
+                    currentAngle -= 90;
+                    _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+                    isRotated = false;
                     Debug.Log("Turning right");
                 }
+            }
+            if (touch.phase == TouchPhase.Ended)
+            {
+                isRotated = false;
             }
         }
     }
@@ -58,14 +72,14 @@ public class RotatingRoad : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
+            transform.Rotate(0, 0, rotateSpeedKeyboard * Time.deltaTime);
             if(transform.rotation.z >= 90)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 90);
             }
         }else if(Input.GetKey(KeyCode.S))
         {
-            transform.Rotate(0, 0, -rotateSpeed * Time.deltaTime);
+            transform.Rotate(0, 0, -rotateSpeedKeyboard * Time.deltaTime);
             if (transform.rotation.z <= -90)
             {
                 transform.rotation = Quaternion.Euler(0, 0, -90);
