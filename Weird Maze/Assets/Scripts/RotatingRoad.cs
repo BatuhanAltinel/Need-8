@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class RotatingRoad : MonoBehaviour
 {
-    [SerializeField] private float rotateSpeedKeyboard = 120f;
-
     private Vector2 firstFingerPos;
     private Vector2 lastFingerPos;
     private Touch touch;
@@ -30,33 +28,39 @@ public class RotatingRoad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RoadRotation();
-        if(Input.touchCount == 1)
+        RotateRoad();
+    }
+
+
+    void RotateRoad()
+    {
+        if (Input.touchCount == 1)
         {
             touch = Input.GetTouch(0);
 
-            if(touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began)
             {
                 firstFingerPos = touch.position;
                 isRotated = true;
             }
-            if(touch.phase == TouchPhase.Moved && !distanceConfirmed)
+            if (touch.phase == TouchPhase.Moved && !distanceConfirmed)
             {
                 lastFingerPos = touch.position + touch.deltaPosition;
                 Debug.Log("Finger moving");
                 float distance = firstFingerPos.x - lastFingerPos.x;
-                if(lastFingerPos.x < firstFingerPos.x && isRotated)
+                if (lastFingerPos.x < firstFingerPos.x && isRotated)
                 {
                     currentAngle += 90;
                     _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
                     transform.rotation = Quaternion.Lerp(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
                     isRotated = false;
                     Debug.Log("Turning left");
-                    if(Mathf.Abs(distance) > 10)
+                    if (Mathf.Abs(distance) > 10)
                     {
                         distanceConfirmed = true;
                     }
-                }else if(lastFingerPos.x > firstFingerPos.x && isRotated)
+                }
+                else if (lastFingerPos.x > firstFingerPos.x && isRotated)
                 {
                     currentAngle -= 90;
                     _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
@@ -77,23 +81,4 @@ public class RotatingRoad : MonoBehaviour
         }
     }
 
-    private void RoadRotation()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Rotate(0, 0, rotateSpeedKeyboard * Time.deltaTime);
-            if(transform.rotation.z >= 90)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 90);
-            }
-        }else if(Input.GetKey(KeyCode.S))
-        {
-            transform.Rotate(0, 0, -rotateSpeedKeyboard * Time.deltaTime);
-            if (transform.rotation.z <= -90)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, -90);
-            }
-        }
-        
-    }
 }
