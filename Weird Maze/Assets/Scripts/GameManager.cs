@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        currentPlayer = GameObject.Find("RealPlayer");
+        currentPlayer = GameObject.Find("Player");
         playersList.Add(currentPlayer);
     }
 
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
             }
             else if (i > 1)
             {
-                currentPos.y += 1;
+                currentPos.y += 1.3f;
                 spawnPoint = currentPos;
             }
                 
@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("first element of list : " + playersList[0].name);
             Debug.Log("player name :"+ playerInstantiate.name + "Player index" + playersList.IndexOf(playerInstantiate));
             playerInstantiate.GetComponent<PlayerFollow>().UpdatePlayerPosition(currentPlayer.transform, true);
-            currentPlayer = playersList[i + 1];
         }
     }
 }

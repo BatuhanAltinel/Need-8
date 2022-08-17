@@ -10,15 +10,14 @@ public class Stacking : MonoBehaviour
 
     private void Start()
     {
-        _firstPlayerPos = GetComponent<MeshRenderer>().bounds.max;
-        _firstPlayerPos += new Vector3(0, 0.5f, 0);
+        _firstPlayerPos = new Vector3(this.transform.position.x,this.transform.position.y + 1.3f,this.transform.position.z);
         Debug.Log(_firstPlayerPos);
-        _currentPlayerPos = new Vector3(transform.position.x, _firstPlayerPos.y + 1f, transform.position.z);
+        _currentPlayerPos = new Vector3(transform.position.x, _firstPlayerPos.y + 1.3f, transform.position.z);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("4+Trigger"))
         {
             isTriggered = true;
             
@@ -26,8 +25,8 @@ public class Stacking : MonoBehaviour
             {
                 isTriggered = false;
                 GameManager.gameManager.PlayerSpawn(_firstPlayerPos, _currentPlayerPos, 4);
-                _firstPlayerPos.y += _currentPlayerPos.y;
-                _currentPlayerPos = new Vector3(transform.position.x, _firstPlayerPos.y + 1f, transform.position.z);
+                _firstPlayerPos.y += _currentPlayerPos.y + 1.6f;
+                _currentPlayerPos = new Vector3(transform.position.x, _firstPlayerPos.y + 1.3f, transform.position.z);
             }
             
         }
