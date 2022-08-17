@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     [HideInInspector]public GameObject playerInstantiate;
     private GameObject currentPlayer;
+    [HideInInspector]public Vector3 spawnPoint = new Vector3();
 
     [HideInInspector]public List<GameObject> playersList = new List<GameObject>();
 
@@ -29,30 +30,25 @@ public class GameManager : MonoBehaviour
         playersList.Add(currentPlayer);
     }
 
-    public void PlayerSpawn(Vector3 firstPos, Vector3 currentPos, int playerCount)
+    public void PlayerSpawn(Vector3 firstPos, int playerCount)
     {
-        Vector3 spawnPoint = new Vector3();
+        
         for (int i = 0; i < playerCount; i++)
         {
-            if (i == 0)
+            if (i < 1)
             {
                 spawnPoint = firstPos;
             }
-            else if (i == 1)
-            {
-                spawnPoint = currentPos;
-            }
-            else if (i > 1)
-            {
-                currentPos.y += 1.3f;
-                spawnPoint = currentPos;
-            }
+            else
+                spawnPoint.y += 1.3f;
                 
             playerInstantiate = Instantiate(playerPrefab, spawnPoint, Quaternion.identity);
             playersList.Add(playerInstantiate);
             Debug.Log("first element of list : " + playersList[0].name);
             Debug.Log("player name :"+ playerInstantiate.name + "Player index" + playersList.IndexOf(playerInstantiate));
             playerInstantiate.GetComponent<PlayerFollow>().UpdatePlayerPosition(currentPlayer.transform, true);
+            currentPlayer = playerInstantiate;
         }
+        firstPos = spawnPoint;
     }
 }

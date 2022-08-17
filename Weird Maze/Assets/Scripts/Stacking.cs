@@ -12,7 +12,7 @@ public class Stacking : MonoBehaviour
     {
         _firstPlayerPos = new Vector3(this.transform.position.x,this.transform.position.y + 1.3f,this.transform.position.z);
         Debug.Log(_firstPlayerPos);
-        _currentPlayerPos = new Vector3(transform.position.x, _firstPlayerPos.y + 1.3f, transform.position.z);
+        //_currentPlayerPos = new Vector3(transform.position.x, _firstPlayerPos.y + 1.3f, transform.position.z);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,9 +24,10 @@ public class Stacking : MonoBehaviour
             if (isTriggered)
             {
                 isTriggered = false;
-                GameManager.gameManager.PlayerSpawn(_firstPlayerPos, _currentPlayerPos, 4);
-                _firstPlayerPos.y += _currentPlayerPos.y + 1.6f;
-                _currentPlayerPos = new Vector3(transform.position.x, _firstPlayerPos.y + 1.3f, transform.position.z);
+                GameManager.gameManager.PlayerSpawn(_firstPlayerPos, 4);
+                _firstPlayerPos = GameManager.gameManager.spawnPoint;
+                _firstPlayerPos.y += 1.3f;
+               
             }
             
         }

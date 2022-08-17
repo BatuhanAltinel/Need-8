@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6574820254360614146}
   - component: {fileID: 9149221354903641156}
   - component: {fileID: 2434731153939713543}
+  - component: {fileID: 3770887452281953373}
+  - component: {fileID: 1006126431583235256}
   m_Layer: 0
   m_Name: Follower
   m_TagString: Untagged
@@ -109,7 +111,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba24a416a5a3d1a498417cb01cd5e053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 10
+  followSpeed: 8
+--- !u!114 &3770887452281953373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793599431821619809}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea442f2c09867840bd7bede4784efb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1006126431583235256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793599431821619809}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ddb91d8680d36e4e895c286d51ee247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
 --- !u!1001 &8921226149947920643
 PrefabInstance:
   m_ObjectHideFlags: 0
