@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - 4+Trigger
+  - Cube
+  - 2xCube
+  - Follower
   layers:
   - Default
   - TransparentFX

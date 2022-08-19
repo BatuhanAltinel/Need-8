@@ -5,15 +5,14 @@ using UnityEngine;
 public class Stacking : MonoBehaviour
 {
     private Vector3 _firstPlayerPos;
-    private Vector3 _currentPlayerPos;
     private bool isTriggered = false;
 
     private void Start()
     {
-        _firstPlayerPos = new Vector3(this.transform.position.x,this.transform.position.y + 1.3f,this.transform.position.z);
-        Debug.Log(_firstPlayerPos);
-        //_currentPlayerPos = new Vector3(transform.position.x, _firstPlayerPos.y + 1.3f, transform.position.z);
+        //_firstPlayerPos = new Vector3(this.transform.position.x,this.transform.position.y + 1.3f,this.transform.position.z);
+        _firstPlayerPos = GameManager.gameManager.currentPlayer.transform.position + new Vector3(0,1.3f,0);
     }
+    
 
     private void OnTriggerEnter(Collider other)
     {

@@ -6,9 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
     public GameObject playerPrefab;
-    [HideInInspector]public GameObject playerInstantiate;
-    private GameObject currentPlayer;
+    [HideInInspector]public GameObject playerInstantiate = null;
+    [HideInInspector] public GameObject currentPlayer;
     [HideInInspector]public Vector3 spawnPoint = new Vector3();
+    public int triggerCount = 0;
+    public bool isFollow = true;
 
     [HideInInspector]public List<GameObject> playersList = new List<GameObject>();
 
@@ -23,12 +25,18 @@ public class GameManager : MonoBehaviour
         }
         else
             Destroy(gameManager);
-    }
-    private void Start()
-    {
         currentPlayer = GameObject.Find("Player");
         playersList.Add(currentPlayer);
     }
+    private void Update()
+    {
+        if (playersList.Count > 1)
+        {
+            
+        }
+        
+    }
+
 
     public void PlayerSpawn(Vector3 firstPos, int playerCount)
     {
@@ -43,12 +51,18 @@ public class GameManager : MonoBehaviour
                 spawnPoint.y += 1.3f;
                 
             playerInstantiate = Instantiate(playerPrefab, spawnPoint, Quaternion.identity);
-            playersList.Add(playerInstantiate);
-            Debug.Log("first element of list : " + playersList[0].name);
-            Debug.Log("player name :"+ playerInstantiate.name + "Player index" + playersList.IndexOf(playerInstantiate));
-            playerInstantiate.GetComponent<PlayerFollow>().UpdatePlayerPosition(currentPlayer.transform, true);
-            currentPlayer = playerInstantiate;
+            FollowerAddToList(playerInstantiate);
+            playerInstantiate.GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[0].transform, isFollow);
         }
-        firstPos = spawnPoint;
     }
+
+    public void FollowerAddToList(GameObject obj)
+    {
+        playersList.Add(obj);
+    }
+    public void FollowerRemoveFromList()
+    {
+        playersList.RemoveAt(0);
+    }
+    
 }
