@@ -35,9 +35,9 @@ public class PlayerController : MonoBehaviour
             GameManager.gameManager.triggerCount++;
             anim.SetInteger("IsRunning", 0);
             anim.SetBool("IsCrush", true);
-            GameManager.gameManager.FollowerRemoveFromList();
+            GameManager.gameManager.FollowerRemoveFromList(0);
             Debug.Log(GameManager.gameManager.playersList.Count);
-            
+            GameManager.gameManager.currentPlayer = GameManager.gameManager.playersList[0];
 
             StartCoroutine(DestroyGameObject());
         }

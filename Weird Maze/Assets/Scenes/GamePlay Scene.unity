@@ -243,6 +243,7 @@ MonoBehaviour:
   currentPlayer: {fileID: 0}
   spawnPoint: {x: 0, y: 0, z: 0}
   triggerCount: 0
+  isFollow: 1
   playersList: []
 --- !u!4 &212869923
 Transform:
@@ -1340,6 +1341,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5251134170523654950}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1466510431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466510423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba24a416a5a3d1a498417cb01cd5e053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followSpeed: 0
 --- !u!1 &1476418719
 GameObject:
   m_ObjectHideFlags: 0

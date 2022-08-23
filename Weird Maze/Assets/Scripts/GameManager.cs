@@ -30,11 +30,12 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (playersList.Count > 1)
+        currentPlayer = playersList[0];
+        if(currentPlayer = playersList[0])
         {
-            
+            currentPlayer.GetComponent<PlayerFollow>().UpdatePlayerPosition(currentPlayer.transform, false);
         }
-        
+        FollowTheFirst(playersList);
     }
 
 
@@ -52,17 +53,27 @@ public class GameManager : MonoBehaviour
                 
             playerInstantiate = Instantiate(playerPrefab, spawnPoint, Quaternion.identity);
             FollowerAddToList(playerInstantiate);
-            playerInstantiate.GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[0].transform, isFollow);
+            
         }
+    }
+
+    public void FollowTheFirst(List<GameObject> playersList)
+    {
+        for (int i= 0; i < playersList.Count-1; i++)
+        {
+            playersList[i+1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[i].transform, isFollow);
+        }
+        
     }
 
     public void FollowerAddToList(GameObject obj)
     {
         playersList.Add(obj);
     }
-    public void FollowerRemoveFromList()
+
+    public void FollowerRemoveFromList(int index)
     {
-        playersList.RemoveAt(0);
+        playersList.RemoveAt(index);
     }
     
 }
