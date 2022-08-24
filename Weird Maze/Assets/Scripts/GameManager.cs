@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]public GameObject playerInstantiate = null;
     [HideInInspector] public GameObject currentPlayer;
     [HideInInspector]public Vector3 spawnPoint = new Vector3();
+    [HideInInspector] public bool isGameOver = false;
 
     [HideInInspector]public List<GameObject> playersList = new List<GameObject>();
 
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
                 spawnPoint = firstPos;
             }
             else
-                spawnPoint.y += 1.3f;
+                spawnPoint.y += 1.4f;
                 
             playerInstantiate = Instantiate(playerPrefab, spawnPoint, Quaternion.identity);
             FollowerAddToList(playerInstantiate);
@@ -56,10 +57,13 @@ public class GameManager : MonoBehaviour
 
     public void FollowTheFirst(List<GameObject> playersList)
     {
-        currentPlayer = playersList[0];
-        for (int i= 0; i < playersList.Count-1; i++)
+        if (!isGameOver)
         {
-            playersList[i+1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[i].transform, true);
+            currentPlayer = playersList[0];
+            for (int i = 0; i < playersList.Count - 1; i++)
+            {
+                playersList[i + 1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[i].transform, true);
+            }
         }
         
     }
@@ -71,10 +75,12 @@ public class GameManager : MonoBehaviour
 
     public void FollowerRemoveFromList()
     {
-        playersList.RemoveAt(0);
-        Debug.Log("first player :" + playersList[0]);
-        Debug.Log(playersList.Count);
-        
+        if (!isGameOver)
+        {
+            playersList.RemoveAt(0);
+            Debug.Log("first player :" + playersList[0]);
+            Debug.Log(playersList.Count);
+        }
     }
 
     public void GameOver()
@@ -82,6 +88,7 @@ public class GameManager : MonoBehaviour
         if(playersList.Count < 1)
         {
             Debug.Log("GameOver");
+            isGameOver = true;
             Time.timeScale = 0;
         }
         
@@ -90,11 +97,13 @@ public class GameManager : MonoBehaviour
     {
         if (playersList.Count > 1)
         {
-            playersList[1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[0].transform,false);
+            playersList[1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[0].transform, false);
             currentPlayer = playersList[1];
             Debug.Log(playersList[1].name + "artýk takip etmiyor =>" + playersList[0].name);
             playersList[1].GetComponent<Stacking>().enabled = true;
         }
+        else
+            GameOver();
         
     }
     

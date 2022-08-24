@@ -98,8 +98,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.3, z: 1}
-  m_Center: {x: 0, y: 0.65, z: 0}
+  m_Size: {x: 1, y: 1.2811658, z: 0.77412605}
+  m_Center: {x: 0, y: 0.64676416, z: 0.14058208}
 --- !u!114 &3770887452281953373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,13 +229,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: d2830f9cbe5833e4fbd709f49c9e6a4e,
         type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:Spine1'\n\tTransform 'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform
-        'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tTransform
-        'mixamorig:Head'\n\tTransform 'mixamorig:LeftUpLeg'\n\tTransform 'mixamorig:LeftArm'\n\tand
-        more ...\n\tFrom animation clip 'Idle'"
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2830f9cbe5833e4fbd709f49c9e6a4e, type: 3}

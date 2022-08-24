@@ -50,9 +50,7 @@ public class RotatingRoad : MonoBehaviour
                 float distance = firstFingerPos.x - lastFingerPos.x;
                 if (lastFingerPos.x < firstFingerPos.x && isRotated)
                 {
-                    currentAngle += 90;
-                    _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+                    TurnLeft();
                     isRotated = false;
                     Debug.Log("Turning left");
                     if (Mathf.Abs(distance) > 10)
@@ -62,9 +60,7 @@ public class RotatingRoad : MonoBehaviour
                 }
                 else if (lastFingerPos.x > firstFingerPos.x && isRotated)
                 {
-                    currentAngle -= 90;
-                    _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+                    TurnRight();
                     isRotated = false;
                     Debug.Log("Turning right");
                     if (Mathf.Abs(distance) > 10)
@@ -79,6 +75,20 @@ public class RotatingRoad : MonoBehaviour
                 distanceConfirmed = false;
             }
         }
+    }
+
+    void TurnRight()
+    {
+        currentAngle -= 90;
+        _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+    }
+
+    void TurnLeft()
+    {
+        currentAngle += 90;
+        _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
     }
 
 }
