@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
                 spawnPoint.y += 1.3f;
                 
             playerInstantiate = Instantiate(playerPrefab, spawnPoint, Quaternion.identity);
-            //playerInstantiate.name = "clone " + i;
             FollowerAddToList(playerInstantiate);
         }
     }
