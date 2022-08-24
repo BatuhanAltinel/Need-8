@@ -107,7 +107,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2793599431821619809}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ea442f2c09867840bd7bede4784efb6, type: 3}
   m_Name: 
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba24a416a5a3d1a498417cb01cd5e053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 11
+  followSpeed: 10
 --- !u!1001 &8921226149947920643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226,6 +226,17 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4a132d9f5250d0e4b8e1c9c9060a42c0, type: 2}
+    - target: {fileID: 5866666021909216657, guid: d2830f9cbe5833e4fbd709f49c9e6a4e,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform
+        'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tTransform
+        'mixamorig:Head'\n\tTransform 'mixamorig:LeftUpLeg'\n\tTransform 'mixamorig:LeftArm'\n\tand
+        more ...\n\tFrom animation clip 'Idle'"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2830f9cbe5833e4fbd709f49c9e6a4e, type: 3}
 --- !u!4 &8954341984813659880 stripped

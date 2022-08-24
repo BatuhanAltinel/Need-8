@@ -5,16 +5,23 @@ using UnityEngine;
 public class PlayerFollow : MonoBehaviour
 {
     [SerializeField] private float followSpeed;
-
+    private void Start()
+    {
+        
+    }
     public void UpdatePlayerPosition(Transform followedPlayer, bool isFollowStart)
     {
         StartCoroutine(StartFollowingToLastPlayerPosition(followedPlayer, isFollowStart));
+        if (!isFollowStart)
+        {
+            StopCoroutine(StartFollowingToLastPlayerPosition(followedPlayer, isFollowStart));
+        }
     }
 
     IEnumerator StartFollowingToLastPlayerPosition(Transform followedPlayer, bool isFollowStart)
     {
 
-        while (isFollowStart)
+        if(isFollowStart)
         {
             yield return new WaitForEndOfFrame();
             transform.position = new Vector3(followedPlayer.transform.position.x, transform.position.y,

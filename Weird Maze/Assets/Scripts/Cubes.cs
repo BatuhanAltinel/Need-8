@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Cubes : MonoBehaviour
 {
-    
+    int triggerCount = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
-    private void Update()
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (GameManager.gameManager.triggerCount >= 2)
+        if (other.gameObject.CompareTag("Follower") || other.gameObject.CompareTag("Player"))
         {
-            this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
-            Debug.Log("triger false");
+            triggerCount++;
+            if (triggerCount == 1)
+            {
+                this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                Debug.Log("triger false");
+                triggerCount = 0;
+            }
+
         }
     }
 

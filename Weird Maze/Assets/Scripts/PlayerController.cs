@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
             anim.SetInteger("IsRunning", 1);
+        }else
+        {
+            anim.SetInteger("IsRunning", 0);
         }
         
     }
@@ -32,14 +35,24 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("2xCube"))
         {
-            GameManager.gameManager.triggerCount++;
+            if(GameManager.gameManager.playersList[0].name == "Player" )
+            {
+                Debug.Log("PLayer çarptý");
+                GameManager.gameManager.BecomePlayer();
+                GameManager.gameManager.FollowerRemoveFromList();
+            }
+            else
+            {
+                GameManager.gameManager.currentPlayer = GameManager.gameManager.playersList[0];
+                GameManager.gameManager.BecomePlayer();
+                GameManager.gameManager.FollowerRemoveFromList();
+            }
+
             anim.SetInteger("IsRunning", 0);
             anim.SetBool("IsCrush", true);
-            GameManager.gameManager.FollowerRemoveFromList(0);
-            Debug.Log(GameManager.gameManager.playersList.Count);
-            GameManager.gameManager.currentPlayer = GameManager.gameManager.playersList[0];
-
+           
             StartCoroutine(DestroyGameObject());
+            
         }
         IEnumerator DestroyGameObject()
         {

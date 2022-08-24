@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector]public GameObject playerInstantiate = null;
     [HideInInspector] public GameObject currentPlayer;
     [HideInInspector]public Vector3 spawnPoint = new Vector3();
-    public int triggerCount = 0;
-    public bool isFollow = true;
 
     [HideInInspector]public List<GameObject> playersList = new List<GameObject>();
 
@@ -28,13 +26,13 @@ public class GameManager : MonoBehaviour
         currentPlayer = GameObject.Find("Player");
         playersList.Add(currentPlayer);
     }
+    private void Start()
+    {
+
+    }
     private void Update()
     {
-        currentPlayer = playersList[0];
-        if(currentPlayer = playersList[0])
-        {
-            currentPlayer.GetComponent<PlayerFollow>().UpdatePlayerPosition(currentPlayer.transform, false);
-        }
+        GameOver();
         FollowTheFirst(playersList);
     }
 
@@ -52,16 +50,17 @@ public class GameManager : MonoBehaviour
                 spawnPoint.y += 1.3f;
                 
             playerInstantiate = Instantiate(playerPrefab, spawnPoint, Quaternion.identity);
+            //playerInstantiate.name = "clone " + i;
             FollowerAddToList(playerInstantiate);
-            
         }
     }
 
     public void FollowTheFirst(List<GameObject> playersList)
     {
+        currentPlayer = playersList[0];
         for (int i= 0; i < playersList.Count-1; i++)
         {
-            playersList[i+1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[i].transform, isFollow);
+            playersList[i+1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[i].transform, true);
         }
         
     }
@@ -71,9 +70,33 @@ public class GameManager : MonoBehaviour
         playersList.Add(obj);
     }
 
-    public void FollowerRemoveFromList(int index)
+    public void FollowerRemoveFromList()
     {
-        playersList.RemoveAt(index);
+        playersList.RemoveAt(0);
+        Debug.Log("first player :" + playersList[0]);
+        Debug.Log(playersList.Count);
+        
+    }
+
+    public void GameOver()
+    {
+        if(playersList.Count < 1)
+        {
+            Debug.Log("GameOver");
+            Time.timeScale = 0;
+        }
+        
+    }
+    public void BecomePlayer()
+    {
+        if (playersList.Count > 1)
+        {
+            playersList[1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[0].transform,false);
+            currentPlayer = playersList[1];
+            Debug.Log(playersList[1].name + "artýk takip etmiyor =>" + playersList[0].name);
+            playersList[1].GetComponent<Stacking>().enabled = true;
+        }
+        
     }
     
 }

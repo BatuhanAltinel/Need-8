@@ -11,6 +11,10 @@ public class Stacking : MonoBehaviour
     {
         //_firstPlayerPos = new Vector3(this.transform.position.x,this.transform.position.y + 1.3f,this.transform.position.z);
         _firstPlayerPos = GameManager.gameManager.currentPlayer.transform.position + new Vector3(0,1.3f,0);
+        if(GameManager.gameManager.playersList.Count > 1)
+        {
+            _firstPlayerPos += new Vector3(0, 1.3f * (float)(GameManager.gameManager.playersList.Count - 1), 0);
+        }
     }
     
 
