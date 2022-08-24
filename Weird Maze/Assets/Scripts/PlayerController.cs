@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("2xCube"))
+        if (other.gameObject.CompareTag("Cube"))
         {
             if(GameManager.gameManager.playersList[0].name == "Player" )
             {
