@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 2;
     private Animator anim;
     private Rigidbody myBody;
-    public float downSpeed = 100;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         MoveForward();
+        MoveDownQuick();
     }
 
     private void MoveForward()
@@ -29,16 +30,6 @@ public class PlayerController : MonoBehaviour
             {
                 transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
                 anim.SetInteger("IsRunning", 1);
-                RaycastHit hit;
-                Ray downRay = new Ray(transform.position, Vector3.down);
-
-                if(Physics.Raycast(downRay,out hit))
-                {
-                    if(hit.distance > 3.4)
-                    {
-                        myBody.AddForce(Vector3.down * Time.deltaTime * downSpeed, ForceMode.Impulse);
-                    }
-                }
             }
             else
             {
@@ -46,12 +37,35 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
+        {
             GameManager.gameManager.GameOver();
+            anim.SetInteger("IsRunning", 0);
+            anim.SetBool("IsCrush", true);
+        }
+            
         
     }
+
+
+    private void MoveDownQuick()
+    {
+        float downSpeed = 100;
+        RaycastHit hit;
+        Ray downRay = new Ray(transform.position, Vector3.down);
+
+        if (Physics.Raycast(downRay, out hit))
+        {
+            if (hit.distance > 3.4)
+            {
+                myBody.AddForce(Vector3.down * Time.deltaTime * downSpeed, ForceMode.Impulse);
+            }
+        }
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Cube"))
+        if (other.gameObject.CompareTag("Cube") && !GameManager.gameManager.isGameOver)
         {
             if(GameManager.gameManager.playersList[0].name == "Player" )
             {

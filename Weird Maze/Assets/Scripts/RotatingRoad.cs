@@ -9,15 +9,16 @@ public class RotatingRoad : MonoBehaviour
     private Vector2 lastFingerPos;
     private Touch touch;
 
-    private bool isRotated = false;
     private bool distanceConfirmed = false;
+    private bool rightTurn = true;
+    private bool leftTurn = false;
 
-    private int currentAngle = 0;
+    private int currentAngle = 90;
 
     private Quaternion _targetRot = Quaternion.identity;
 
     [SerializeField]
-    private float _rotateSpeed = 30f;
+    private float _rotateSpeed = 250f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,9 @@ public class RotatingRoad : MonoBehaviour
     void Update()
     {
         RotateRoad();
+        AngleCheck();
+        TurnRight();
+        TurnLeft();
     }
 
 
@@ -41,37 +45,36 @@ public class RotatingRoad : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 firstFingerPos = touch.position;
-                isRotated = true;
+                
             }
             if (touch.phase == TouchPhase.Moved && !distanceConfirmed)
             {
                 lastFingerPos = touch.position + touch.deltaPosition;
-                Debug.Log("Finger moving");
                 float distance = firstFingerPos.x - lastFingerPos.x;
-                if (lastFingerPos.x < firstFingerPos.x && isRotated)
+
+                if (lastFingerPos.x < firstFingerPos.x)
                 {
-                    TurnLeft();
-                    isRotated = false;
-                    Debug.Log("Turning left");
                     if (Mathf.Abs(distance) > 10)
                     {
+                        currentAngle += 90;
                         distanceConfirmed = true;
+                        leftTurn = true;
+                        TurnLeft();
                     }
                 }
-                else if (lastFingerPos.x > firstFingerPos.x && isRotated)
+                else if (lastFingerPos.x > firstFingerPos.x)
                 {
-                    TurnRight();
-                    isRotated = false;
-                    Debug.Log("Turning right");
                     if (Mathf.Abs(distance) > 10)
                     {
+                        currentAngle -= 90;
                         distanceConfirmed = true;
+                        rightTurn = true;
+                        TurnRight();
                     }
                 }
             }
             if (touch.phase == TouchPhase.Ended)
             {
-                isRotated = false;
                 distanceConfirmed = false;
             }
         }
@@ -79,16 +82,33 @@ public class RotatingRoad : MonoBehaviour
 
     void TurnRight()
     {
-        currentAngle -= 90;
-        _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
-        transform.rotation = Quaternion.Lerp(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+        if (rightTurn)
+        {
+            leftTurn = false;
+            _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+        }
     }
 
     void TurnLeft()
     {
-        currentAngle += 90;
-        _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
-        transform.rotation = Quaternion.Lerp(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+        if (leftTurn)
+        {
+            rightTurn = false;
+            _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+        }
+    }
+
+    void AngleCheck()
+    {
+        if(transform.rotation.z == currentAngle)
+        {
+            if (rightTurn)
+                rightTurn = false;
+            else
+                leftTurn = false;
+        }
     }
 
 }

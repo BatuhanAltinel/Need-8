@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager gameManager;
     public GameObject playerPrefab;
     [HideInInspector]public GameObject playerInstantiate = null;
-    [HideInInspector] public GameObject currentPlayer;
+    public GameObject currentPlayer;
     [HideInInspector]public Vector3 spawnPoint = new Vector3();
     [HideInInspector] public bool isGameOver = false;
 
@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
         if (gameManager == null)
         {
             gameManager = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameManager);
-        currentPlayer = GameObject.Find("Player");
+        //currentPlayer = GameObject.Find("Player");
         playersList.Add(currentPlayer);
     }
     private void Start()
@@ -77,37 +77,38 @@ public class GameManager : MonoBehaviour
 
     public void FollowerRemoveFromList()
     {
-        if (!isGameOver)
+        if (!isGameOver && playersList.Count >= 1)
         {
+            if (playersList.Count == 1)
+            {
+                playersList.Add(currentPlayer);
+                isGameOver = true;
+            }
             playersList.RemoveAt(0);
             Debug.Log("first player :" + playersList[0]);
             Debug.Log(playersList.Count);
+            
         }
-        else
-            GameOver();
+            
     }
 
     public void GameOver()
     {
-        if(playersList.Count < 1)
+        if (isGameOver)
         {
             Debug.Log("GameOver");
-            isGameOver = true;
-            Time.timeScale = 0;
-        }
-        
+        }   
     }
+
     public void BecomePlayer()
     {
-        if (playersList.Count > 1)
+        if (playersList.Count > 1 && !isGameOver)
         {
             playersList[1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[0].transform, false);
             currentPlayer = playersList[1];
             Debug.Log(playersList[1].name + "artýk takip etmiyor =>" + playersList[0].name);
             playersList[1].GetComponent<Stacking>().enabled = true;
         }
-        else
-            GameOver();
     }
     
 }
