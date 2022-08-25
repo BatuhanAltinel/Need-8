@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
                 playersList[i + 1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[i].transform, true);
             }
         }
+        else
+            GameOver();
         
     }
 
@@ -81,6 +83,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("first player :" + playersList[0]);
             Debug.Log(playersList.Count);
         }
+        else
+            GameOver();
     }
 
     public void GameOver()
@@ -104,7 +108,6 @@ public class GameManager : MonoBehaviour
         }
         else
             GameOver();
-        
     }
     
 }

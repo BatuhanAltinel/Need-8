@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 2;
     private Animator anim;
     private Rigidbody myBody;
+    public float downSpeed = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +28,17 @@ public class PlayerController : MonoBehaviour
             if (this.gameObject == GameManager.gameManager.playersList[0])
             {
                 transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-                //myBody.AddForce(Vector3.forward * moveSpeed * Time.deltaTime, ForceMode.Force);
                 anim.SetInteger("IsRunning", 1);
+                RaycastHit hit;
+                Ray downRay = new Ray(transform.position, Vector3.down);
+
+                if(Physics.Raycast(downRay,out hit))
+                {
+                    if(hit.distance > 3.4)
+                    {
+                        myBody.AddForce(Vector3.down * Time.deltaTime * downSpeed, ForceMode.Impulse);
+                    }
+                }
             }
             else
             {

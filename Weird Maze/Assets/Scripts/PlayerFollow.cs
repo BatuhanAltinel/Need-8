@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerFollow : MonoBehaviour
 {
     [SerializeField] private float followSpeed;
+    public static Stacking stacking;
     private void Start()
     {
         
@@ -24,8 +25,9 @@ public class PlayerFollow : MonoBehaviour
         if(isFollowStart)
         {
             yield return new WaitForEndOfFrame();
-            transform.position = new Vector3(followedPlayer.transform.position.x, transform.position.y,
-                Mathf.Lerp(transform.position.z, followedPlayer.position.z, followSpeed * Time.deltaTime));
+            transform.position = new Vector3(followedPlayer.transform.position.x,
+                              transform.position.y,
+                              Mathf.Lerp(transform.position.z, followedPlayer.position.z, followSpeed * Time.deltaTime));
         }
     }
 }
