@@ -20,6 +20,7 @@ public class Stacking : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        int plusNumber = (int)char.GetNumericValue(other.gameObject.name[0]);
         if (other.CompareTag("4+Trigger"))
         {
             isTriggered = true;
@@ -27,7 +28,7 @@ public class Stacking : MonoBehaviour
             if (isTriggered)
             {
                 isTriggered = false;
-                GameManager.gameManager.PlayerSpawn(_firstPlayerPos, 4);
+                GameManager.gameManager.PlayerSpawn(_firstPlayerPos, plusNumber);
                 _firstPlayerPos = GameManager.gameManager.spawnPoint;
                 _firstPlayerPos.y += 1.4f;
                
