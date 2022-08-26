@@ -7,14 +7,25 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public Button restartButton;
-    // Start is called before the first frame update
-    void Start()
+    public GameObject failedPanel;
+    
+    private void Update()
     {
-        
+        GameOverUI();
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
+        restartButton.gameObject.SetActive(false);
+        failedPanel.SetActive(false);
+    }
+    public void GameOverUI()
+    {
+        if (GameManager.gameManager.isGameOver)
+        {
+            failedPanel.SetActive(true);
+            restartButton.gameObject.SetActive(true);
+        }
     }
 }
