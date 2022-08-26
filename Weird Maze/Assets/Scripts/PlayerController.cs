@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody myBody;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         myBody = GetComponent<Rigidbody>();
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         MoveForward();
         MoveDownQuick();
+        FailCheck();
     }
 
     private void MoveForward()
@@ -42,21 +43,21 @@ public class PlayerController : MonoBehaviour
             anim.SetInteger("IsRunning", 0);
             anim.SetBool("IsCrush", true);
         }
-            
-        
     }
 
 
     private void MoveDownQuick()
     {
-        float downSpeed = 100;
+        float downSpeed = 100f;
         RaycastHit hit;
-        Ray downRay = new Ray(transform.position, Vector3.down);
+        Ray downRay = new Ray(this.transform.position, Vector3.down);
 
         if (Physics.Raycast(downRay, out hit))
         {
-            if (hit.distance > 3.4)
+            Debug.Log(hit.transform + " hit çarpti.");
+            if (hit.distance > 3)
             {
+                Debug.Log("Mesafe doðru");
                 myBody.AddForce(Vector3.down * Time.deltaTime * downSpeed, ForceMode.Impulse);
             }
         }
@@ -79,19 +80,25 @@ public class PlayerController : MonoBehaviour
                 GameManager.gameManager.BecomePlayer();
                 GameManager.gameManager.FollowerRemoveFromList();
             }
+            StartCoroutine(DestroyGameObject());
+        }      
+    }
 
+    void FailCheck()
+    {
+        if (GameManager.gameManager.isGameOver)
+        {
             anim.SetInteger("IsRunning", 0);
             anim.SetBool("IsCrush", true);
-           
-            StartCoroutine(DestroyGameObject());
-            
         }
-        IEnumerator DestroyGameObject()
-        {
-            yield return new WaitForSeconds(2f);
+        
+    }
 
+    IEnumerator DestroyGameObject()
+    {
+        yield return new WaitForSeconds(2f);
+        if(!GameManager.gameManager.isGameOver)
             this.gameObject.SetActive(false);
-        }
     }
 
 }

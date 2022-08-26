@@ -11,7 +11,7 @@ public class RotatingRoad : MonoBehaviour
 
     private bool distanceConfirmed = false;
     private bool rightTurn = true;
-    private bool leftTurn = false;
+    private bool leftTurn = true;
 
     private int currentAngle = 90;
 
@@ -31,8 +31,9 @@ public class RotatingRoad : MonoBehaviour
     {
         RotateRoad();
         AngleCheck();
-        TurnRight();
-        TurnLeft();
+        //TurnRight();
+        //TurnLeft();
+        SmoothTurning();
     }
 
 
@@ -59,7 +60,7 @@ public class RotatingRoad : MonoBehaviour
                         currentAngle += 90;
                         distanceConfirmed = true;
                         leftTurn = true;
-                        TurnLeft();
+                        //TurnLeft();
                     }
                 }
                 else if (lastFingerPos.x > firstFingerPos.x)
@@ -69,7 +70,7 @@ public class RotatingRoad : MonoBehaviour
                         currentAngle -= 90;
                         distanceConfirmed = true;
                         rightTurn = true;
-                        TurnRight();
+                        //TurnRight();
                     }
                 }
             }
@@ -80,25 +81,25 @@ public class RotatingRoad : MonoBehaviour
         }
     }
 
-    void TurnRight()
-    {
-        if (rightTurn)
-        {
-            leftTurn = false;
-            _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
-        }
-    }
+    //void TurnRight()
+    //{
+    //    if (rightTurn)
+    //    {
+    //        leftTurn = false;
+    //        _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+    //        transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+    //    }
+    //}
 
-    void TurnLeft()
-    {
-        if (leftTurn)
-        {
-            rightTurn = false;
-            _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
-        }
-    }
+    //void TurnLeft()
+    //{
+    //    if (leftTurn)
+    //    {
+    //        rightTurn = false;
+    //        _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+    //        transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+    //    }
+    //}
 
     void AngleCheck()
     {
@@ -111,4 +112,9 @@ public class RotatingRoad : MonoBehaviour
         }
     }
 
+    void SmoothTurning()
+    {
+        _targetRot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRot, _rotateSpeed * Time.deltaTime);
+    }
 }
