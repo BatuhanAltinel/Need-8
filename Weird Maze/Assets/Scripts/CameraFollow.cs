@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     private float distancePerFollowerZ = -0.25f;
     private float distancePerFollowerY = 0.3f;
 
-    private bool failed = true;
+    private bool failed = false;
 
     private float yDist = 0;
     private float zDist = 0;
@@ -36,28 +36,41 @@ public class CameraFollow : MonoBehaviour
                 Mathf.Lerp(transform.position.y, GameManager.gameManager.currentPlayer.transform.position.y + offset.y, Time.deltaTime * 10),
                 Mathf.Lerp(transform.position.z, GameManager.gameManager.currentPlayer.transform.position.z + offset.z, Time.deltaTime * 10));
         }
-        else if (failed && GameManager.gameManager.isGameOver)
+        else if (!failed && GameManager.gameManager.isGameOver)
         {
-            FailCamera();
-            failed = false;
-        }
             
+            failed = true;
+        }
+        FailCameraMovePosition();
+        FailCameraSmoothRotation();
+    }
+
+    void FailCameraMovePosition()
+    {
+        if (failed)
+        {
+            Vector3 failPos = new Vector3(13.5f + GameManager.gameManager.currentPlayer.transform.position.x,
+                                      6.5f + GameManager.gameManager.currentPlayer.transform.position.y,
+                                     -6.5f + GameManager.gameManager.currentPlayer.transform.position.z);
+
+            transform.position = new Vector3
+                    (Mathf.Lerp(GameManager.gameManager.currentPlayer.transform.position.x, failPos.x, 5 * Time.deltaTime),
+                    Mathf.Lerp(GameManager.gameManager.currentPlayer.transform.position.y, failPos.y, 5 * Time.deltaTime),
+                    Mathf.Lerp(GameManager.gameManager.currentPlayer.transform.position.z, failPos.z, 5 * Time.deltaTime));
+            if (transform.position != failPos)
+                transform.position = failPos;
+        }
         
     }
 
-    void FailCamera()
+
+    void FailCameraSmoothRotation()
     {
-        Vector3 failPos = new Vector3(10f + GameManager.gameManager.currentPlayer.transform.position.x,
-                                    6f + GameManager.gameManager.currentPlayer.transform.position.y, 
-                                    -6f + GameManager.gameManager.currentPlayer.transform.position.z);
-        Quaternion failRot = Quaternion.Euler(17.6f + transform.rotation.x,-60f + transform.rotation.y,transform.rotation.z);
-
-        transform.position = new Vector3
-            (Mathf.Lerp(GameManager.gameManager.currentPlayer.transform.position.x, failPos.x, 20 * Time.deltaTime),
-             Mathf.Lerp(GameManager.gameManager.currentPlayer.transform.position.y, failPos.y, 20 * Time.deltaTime),
-             Mathf.Lerp(GameManager.gameManager.currentPlayer.transform.position.z, failPos.z, 20 * Time.deltaTime));
-
-        transform.rotation = Quaternion.Lerp
-                                (this.transform.rotation, failRot, 110 * Time.deltaTime);
+        if (failed)
+        {
+            Quaternion failRot = Quaternion.Euler(17.6f + transform.rotation.x, -60f + transform.rotation.y, transform.rotation.z);
+            transform.rotation = Quaternion.RotateTowards
+                                    (this.transform.rotation, failRot, 100 * Time.deltaTime);
+        }
     }
 }
