@@ -6,9 +6,10 @@ public class PlayerFollow : MonoBehaviour
 {
     [SerializeField] private float followSpeed;
     public static Stacking stacking;
+
     private void Start()
     {
-        
+       
     }
     public void UpdatePlayerPosition(Transform followedPlayer, bool isFollowStart)
     {

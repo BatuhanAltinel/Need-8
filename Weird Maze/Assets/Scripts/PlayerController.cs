@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 2;
     private Animator anim;
     private Rigidbody myBody;
+    float forceImpulse = 50;
 
     // Start is called before the first frame update
     void Awake()
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveDownQuick()
     {
-        float downSpeed = 50f;
+        float downSpeed = 80f;
         RaycastHit hit;
         Ray downRay = new Ray(this.transform.position, Vector3.down);
 
@@ -81,6 +82,8 @@ public class PlayerController : MonoBehaviour
                 GameManager.gameManager.BecomePlayer();
                 GameManager.gameManager.FollowerRemoveFromList();
             }
+            StartCoroutine(FailedForce());
+            StartCoroutine(StopForce());
             StartCoroutine(DestroyGameObject());
         }      
     }
@@ -112,7 +115,18 @@ public class PlayerController : MonoBehaviour
         if(!GameManager.gameManager.isGameOver)
             this.gameObject.SetActive(false);
     }
-
+    IEnumerator FailedForce()
+    {
+        yield return new WaitForSeconds(0);
+        myBody.AddForce(new Vector3(0,3,-1) * forceImpulse * Time.deltaTime, ForceMode.Impulse);
+        forceImpulse += 50;
+    }
+    IEnumerator StopForce()
+    {
+        yield return new WaitForSeconds(3f);
+        forceImpulse = 0;
+        myBody.GetComponent<Rigidbody>().isKinematic = true;
+    }
 }
 
     

@@ -54,11 +54,11 @@ public class CameraFollow : MonoBehaviour
                                      -6.5f + GameManager.gameManager.currentPlayer.transform.position.z);
 
             transform.position = new Vector3
-                    (Mathf.Lerp(GameManager.gameManager.currentPlayer.transform.position.x, failPos.x, 5 * Time.deltaTime),
-                    Mathf.Lerp(GameManager.gameManager.currentPlayer.transform.position.y, failPos.y, 5 * Time.deltaTime),
-                    Mathf.Lerp(GameManager.gameManager.currentPlayer.transform.position.z, failPos.z, 5 * Time.deltaTime));
-            if (transform.position != failPos)
-                transform.position = failPos;
+                    (Mathf.Lerp(transform.position.x, failPos.x, 1 * Time.deltaTime),
+                    Mathf.Lerp(transform.position.y, failPos.y, 1 * Time.deltaTime),
+                    Mathf.Lerp(transform.position.z, failPos.z, 1 * Time.deltaTime));
+            //if (transform.position != failPos)
+            //    transform.position = failPos;
         }
         
     }

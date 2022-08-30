@@ -28,11 +28,24 @@ public class Cubes : MonoBehaviour
                 Debug.Log("triger false");
                 triggerCount = 0;
             }
-
-            otherBody = other.gameObject.GetComponent<Rigidbody>();
-            otherBody.AddForce(Vector3.back * forceImpulse * Time.deltaTime, ForceMode.Impulse);
-            forceImpulse += 20;
+            //otherBody = other.gameObject.GetComponent<Rigidbody>();
+            //otherBody.GetComponent<Rigidbody>().isKinematic = false;
+            //otherBody.AddForce(Vector3.back * forceImpulse * Time.deltaTime, ForceMode.Impulse);
+            //StartCoroutine(FailedForce());
+            //StartCoroutine(StopForce());
         }
+    }
+    IEnumerator FailedForce()
+    {
+        yield return new WaitForSeconds(0);
+        otherBody.AddForce(Vector3.back * forceImpulse * Time.deltaTime, ForceMode.Impulse);
+        forceImpulse += 20;
+    }
+    IEnumerator StopForce()
+    {
+        yield return new WaitForSeconds(3f);
+        forceImpulse = 0;
+        otherBody.GetComponent<Rigidbody>().isKinematic = true;
     }
 
 
