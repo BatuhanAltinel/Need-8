@@ -22,11 +22,12 @@ public class PlayerController : MonoBehaviour
         MoveForward();
         MoveDownQuick();
         FailCheck();
+        SuccessCheck();
     }
 
     private void MoveForward()
     {
-        if (!GameManager.gameManager.isGameOver)
+        if (!GameManager.gameManager.isGameOver && !GameManager.gameManager.isSuccess)
         {
             if (this.gameObject == GameManager.gameManager.playersList[0])
             {
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetInteger("IsRunning", 0);
             }
         }
-        else
+        else if(GameManager.gameManager.isGameOver)
         {
             GameManager.gameManager.GameOver();
             anim.SetInteger("IsRunning", 0);
@@ -95,7 +96,14 @@ public class PlayerController : MonoBehaviour
             anim.SetInteger("IsRunning", 0);
             anim.SetBool("IsCrush", true);
         }
-        
+    }
+    void SuccessCheck()
+    {
+        if (GameManager.gameManager.isSuccess)
+        {
+            anim.SetInteger("IsRunning", 0);
+            anim.SetBool("IsSuccess", true);
+        }
     }
 
     void TransformCheck()

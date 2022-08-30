@@ -27,6 +27,10 @@ public class UIManager : MonoBehaviour
             StartCoroutine(FailedPanelActive());
         }
     }
+    public void SuccessUI()
+    {
+
+    }
 
     IEnumerator FailedPanelActive()
     {

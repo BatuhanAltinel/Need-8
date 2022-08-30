@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject currentPlayer;
     [HideInInspector]public Vector3 spawnPoint = new Vector3();
     [HideInInspector] public bool isGameOver = false;
+    [HideInInspector] public bool isSuccess = false;
 
     [HideInInspector]public List<GameObject> playersList = new List<GameObject>();
 
@@ -85,9 +86,6 @@ public class GameManager : MonoBehaviour
                 isGameOver = true;
             }
             playersList.RemoveAt(0);
-            Debug.Log("first player :" + playersList[0]);
-            Debug.Log(playersList.Count);
-            
         }
             
     }

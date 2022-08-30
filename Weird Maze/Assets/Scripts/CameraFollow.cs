@@ -13,11 +13,6 @@ public class CameraFollow : MonoBehaviour
 
     private float yDist = 0;
     private float zDist = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     void LateUpdate()
     {
@@ -51,18 +46,15 @@ public class CameraFollow : MonoBehaviour
         {
             Vector3 failPos = new Vector3(13.5f + GameManager.gameManager.currentPlayer.transform.position.x,
                                       6.5f + GameManager.gameManager.currentPlayer.transform.position.y,
-                                     -6.5f + GameManager.gameManager.currentPlayer.transform.position.z);
+                                     -5.5f + GameManager.gameManager.currentPlayer.transform.position.z);
 
             transform.position = new Vector3
                     (Mathf.Lerp(transform.position.x, failPos.x, 1 * Time.deltaTime),
                     Mathf.Lerp(transform.position.y, failPos.y, 1 * Time.deltaTime),
                     Mathf.Lerp(transform.position.z, failPos.z, 1 * Time.deltaTime));
-            //if (transform.position != failPos)
-            //    transform.position = failPos;
         }
         
     }
-
 
     void FailCameraSmoothRotation()
     {
