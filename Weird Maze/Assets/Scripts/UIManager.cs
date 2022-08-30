@@ -24,8 +24,14 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.gameManager.isGameOver)
         {
-            failedPanel.SetActive(true);
-            restartButton.gameObject.SetActive(true);
+            StartCoroutine(FailedPanelActive());
         }
+    }
+
+    IEnumerator FailedPanelActive()
+    {
+        yield return new WaitForSeconds(2f);
+        failedPanel.SetActive(true);
+        restartButton.gameObject.SetActive(true);
     }
 }

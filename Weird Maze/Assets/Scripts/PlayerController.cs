@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 2;
     private Animator anim;
     private Rigidbody myBody;
-    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -43,12 +43,13 @@ public class PlayerController : MonoBehaviour
             anim.SetInteger("IsRunning", 0);
             anim.SetBool("IsCrush", true);
         }
+        TransformCheck();
     }
 
 
     private void MoveDownQuick()
     {
-        float downSpeed = 100f;
+        float downSpeed = 50f;
         RaycastHit hit;
         Ray downRay = new Ray(this.transform.position, Vector3.down);
 
@@ -92,6 +93,17 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsCrush", true);
         }
         
+    }
+
+    void TransformCheck()
+    {
+        if(GameManager.gameManager.currentPlayer.transform.position.x > 0 || 
+            GameManager.gameManager.currentPlayer.transform.position.x < 0)
+        {
+            GameManager.gameManager.currentPlayer.transform.position = new Vector3(0, 
+                                                    GameManager.gameManager.currentPlayer.transform.position.y,
+                                                    GameManager.gameManager.currentPlayer.transform.position.z);
+        }
     }
 
     IEnumerator DestroyGameObject()

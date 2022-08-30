@@ -6,6 +6,8 @@ public class Cubes : MonoBehaviour
 {
     int triggerCount;
     int cubeName = 0;
+    private Rigidbody otherBody;
+    float forceImpulse = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,9 @@ public class Cubes : MonoBehaviour
                 triggerCount = 0;
             }
 
+            otherBody = other.gameObject.GetComponent<Rigidbody>();
+            otherBody.AddForce(Vector3.back * forceImpulse * Time.deltaTime, ForceMode.Impulse);
+            forceImpulse += 20;
         }
     }
 
