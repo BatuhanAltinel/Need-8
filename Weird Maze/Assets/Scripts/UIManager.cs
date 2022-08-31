@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         GameOverUI();
+        SuccessUI();
     }
 
     public void RestartGame()
@@ -29,13 +30,22 @@ public class UIManager : MonoBehaviour
     }
     public void SuccessUI()
     {
-
+        if (GameManager.gameManager.isSuccess)
+        {
+            StartCoroutine(LoadNextScene());
+        }
     }
 
     IEnumerator FailedPanelActive()
     {
         yield return new WaitForSeconds(2f);
         failedPanel.SetActive(true);
+        restartButton.gameObject.SetActive(true);
+    }
+
+    IEnumerator LoadNextScene()
+    {
+        yield return new WaitForSeconds(4f);
         restartButton.gameObject.SetActive(true);
     }
 }

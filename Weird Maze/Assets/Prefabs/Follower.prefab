@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 9149221354903641156}
   - component: {fileID: 3770887452281953373}
   - component: {fileID: 1006126431583235256}
-  - component: {fileID: 1116345095992743095}
   - component: {fileID: 649102413014028207}
+  - component: {fileID: 6814522330358721002}
   m_Layer: 0
   m_Name: Follower
   m_TagString: Follower
@@ -94,7 +94,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2793599431821619809}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d0b4cdb243c58a74c9a16e927e98a886, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -125,7 +125,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
---- !u!54 &1116345095992743095
+--- !u!114 &649102413014028207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793599431821619809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba24a416a5a3d1a498417cb01cd5e053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followSpeed: 12
+--- !u!54 &6814522330358721002
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,20 +153,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 114
-  m_CollisionDetection: 1
---- !u!114 &649102413014028207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2793599431821619809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba24a416a5a3d1a498417cb01cd5e053, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followSpeed: 12
+  m_CollisionDetection: 0
 --- !u!1001 &8921226149947920643
 PrefabInstance:
   m_ObjectHideFlags: 0

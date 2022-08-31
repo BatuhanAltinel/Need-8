@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     [HideInInspector]public GameObject playerInstantiate = null;
     public GameObject currentPlayer;
+
     [HideInInspector]public Vector3 spawnPoint = new Vector3();
+
     [HideInInspector] public bool isGameOver = false;
     [HideInInspector] public bool isSuccess = false;
 
-    [HideInInspector]public List<GameObject> playersList = new List<GameObject>();
-
+    [HideInInspector] public List<GameObject> playersList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Awake()
@@ -28,14 +29,11 @@ public class GameManager : MonoBehaviour
         //currentPlayer = GameObject.Find("Player");
         playersList.Add(currentPlayer);
     }
-    private void Start()
-    {
-
-    }
     private void Update()
     {
         GameOver();
         FollowTheFirst(playersList);
+        //NextLevel();
     }
 
 
@@ -104,9 +102,26 @@ public class GameManager : MonoBehaviour
         {
             playersList[1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[0].transform, false);
             currentPlayer = playersList[1];
-            Debug.Log(playersList[1].name + "artýk takip etmiyor =>" + playersList[0].name);
             playersList[1].GetComponent<Stacking>().enabled = true;
         }
+    }
+    
+    void NextLevel()
+    {
+        if (isSuccess)
+        {
+            StartCoroutine(LoadNextLevel());
+        }
+    }
+
+    IEnumerator LoadNextLevel()
+    {
+        yield return new WaitForSeconds(3f);
+        LevelManager.levelManager.NextLevel();
+        playersList.Clear();
+        currentPlayer = Instantiate(currentPlayer, new Vector3(0, 1, -24f), Quaternion.identity);
+        playersList.Add(currentPlayer);
+        isSuccess = false;
     }
     
 }

@@ -4,10 +4,12 @@ ScriptsOnlyBuild:
     - CameraFollow
     - Cubes
     - GameManager
+    - LevelManager
     - PlayerController
     - PlayerFollow
     - RotatingRoad
     - Stacking
+    - SuccessPoint
     - UIManager
     Unity.DeviceSimulator.Editor.dll:
     - UnityEditor.DeviceSimulation.DeviceInfoAsset
@@ -107,25 +109,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2408}
     - Class: 114
-      Script: {instanceID: 2796}
+      Script: {instanceID: 2732}
     - Class: 114
-      Script: {instanceID: 2954}
+      Script: {instanceID: 2798}
     - Class: 114
-      Script: {instanceID: 3006}
+      Script: {instanceID: 2956}
     - Class: 114
-      Script: {instanceID: 3088}
+      Script: {instanceID: 3008}
     - Class: 114
-      Script: {instanceID: 3216}
+      Script: {instanceID: 3090}
     - Class: 114
-      Script: {instanceID: 3418}
+      Script: {instanceID: 3218}
     - Class: 114
-      Script: {instanceID: 3562}
+      Script: {instanceID: 3420}
     - Class: 114
-      Script: {instanceID: 4878}
+      Script: {instanceID: 3564}
     - Class: 114
-      Script: {instanceID: 5230}
+      Script: {instanceID: 4880}
     - Class: 114
-      Script: {instanceID: 5486}
+      Script: {instanceID: 5232}
+    - Class: 114
+      Script: {instanceID: 5488}
+    - Class: 114
+      Script: {instanceID: 41946}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -289,7 +295,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: da625806712af9cd8e3934e60012a05c
+      Hash: 0f79b27ee40fe5cbf1a6d0cadabee676
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -377,6 +383,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ParticleEffectsLibrary
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SuccessPoint
   - hash:
       serializedVersion: 2
       Hash: cdae397d069a87828216aa38178e92df
@@ -895,7 +907,7 @@ ScriptsOnlyBuild:
     className: InputSystemObject
   - hash:
       serializedVersion: 2
-      Hash: 394e5e5bdbcaae0814eb2f2b58662d86
+      Hash: 360e242c719babb81540a1f5b1c2ab36
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -947,7 +959,13 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: 970227a4459058bdc2cd00e602f1a7af
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LevelManager
   platform: 13
   scenePathNames:
   - Assets/Scenes/GamePlay Scene.unity
-  playerPath: C:/Users/altin/Desktop/weirdMaze-second-test.apk
+  playerPath: C:/Users/altin/Desktop/weirdMaze-third-test.apk

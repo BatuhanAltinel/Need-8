@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 2;
     private Animator anim;
     private Rigidbody myBody;
-    float forceImpulse = 50;
+    float forceImpulse = 30f;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         MoveForward();
-        MoveDownQuick();
         FailCheck();
         SuccessCheck();
     }
@@ -31,6 +30,7 @@ public class PlayerController : MonoBehaviour
         {
             if (this.gameObject == GameManager.gameManager.playersList[0])
             {
+                MoveDownQuick();
                 transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
                 anim.SetInteger("IsRunning", 1);
             }
@@ -57,10 +57,8 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(downRay, out hit))
         {
-            Debug.Log(hit.transform + " hit çarpti.");
-            if (hit.distance > 3)
+            if (hit.distance > 1)
             {
-                Debug.Log("Mesafe doðru");
                 myBody.AddForce(Vector3.down * Time.deltaTime * downSpeed, ForceMode.Impulse);
             }
         }
@@ -73,7 +71,6 @@ public class PlayerController : MonoBehaviour
         {
             if(GameManager.gameManager.playersList[0].name == "Player" )
             {
-                Debug.Log("PLayer çarptý");
                 GameManager.gameManager.BecomePlayer();
                 GameManager.gameManager.FollowerRemoveFromList();
             }
@@ -115,6 +112,10 @@ public class PlayerController : MonoBehaviour
                                                     GameManager.gameManager.currentPlayer.transform.position.y,
                                                     GameManager.gameManager.currentPlayer.transform.position.z);
         }
+        if (this.gameObject.transform.position.z >= 300)
+        {
+            GameManager.gameManager.isGameOver = true;
+        }
     }
 
     IEnumerator DestroyGameObject()
@@ -127,7 +128,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0);
         myBody.AddForce(new Vector3(0,3,-1) * forceImpulse * Time.deltaTime, ForceMode.Impulse);
-        forceImpulse += 50;
+        forceImpulse += 30;
     }
     IEnumerator StopForce()
     {

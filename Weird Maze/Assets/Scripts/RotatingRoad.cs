@@ -11,7 +11,7 @@ public class RotatingRoad : MonoBehaviour
 
     private bool distanceConfirmed = false;
 
-    private int currentAngle = 90;
+    private int currentAngle = 0;
 
     private Quaternion _targetRot = Quaternion.identity;
 
