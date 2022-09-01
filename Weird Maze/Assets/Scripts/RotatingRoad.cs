@@ -41,7 +41,6 @@ public class RotatingRoad : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 firstFingerPos = touch.position;
-                
             }
             if (touch.phase == TouchPhase.Moved && !distanceConfirmed)
             {

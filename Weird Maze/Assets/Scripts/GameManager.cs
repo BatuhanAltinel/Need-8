@@ -16,17 +16,17 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public List<GameObject> playersList = new List<GameObject>();
 
+    public int sceneNumber = 0;
+
     // Start is called before the first frame update
     void Awake()
     {
         if (gameManager == null)
         {
             gameManager = this;
-            //DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameManager);
-        //currentPlayer = GameObject.Find("Player");
         playersList.Add(currentPlayer);
     }
     private void Update()
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     public void FollowTheFirst(List<GameObject> playersList)
     {
-        if (!isGameOver)
+        if (!isGameOver && playersList.Count > 1)
         {
             currentPlayer = playersList[0];
             for (int i = 0; i < playersList.Count - 1; i++)
@@ -106,22 +106,29 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    void NextLevel()
-    {
-        if (isSuccess)
-        {
-            StartCoroutine(LoadNextLevel());
-        }
-    }
+    //void NextLevel()
+    //{
+    //    if (isSuccess)
+    //    {
+    //        StartCoroutine(LoadNextLevel());
+    //    }
+    //}
 
-    IEnumerator LoadNextLevel()
-    {
-        yield return new WaitForSeconds(3f);
-        LevelManager.levelManager.NextLevel();
-        playersList.Clear();
-        currentPlayer = Instantiate(currentPlayer, new Vector3(0, 1, -24f), Quaternion.identity);
-        playersList.Add(currentPlayer);
-        isSuccess = false;
-    }
+    //IEnumerator LoadNextLevel()
+    //{
+    //    yield return new WaitForSeconds(3f);
+
+    //    LevelManager.levelManager.NextLevel();
+    //    isGameOver = false;
+    //    for (int i = playersList.Count; i > 2 ; i++)
+    //    {
+    //        Destroy(playersList[i]);
+    //    }
+    //    BecomePlayer();
+    //    FollowerRemoveFromList();
+    //    currentPlayer = playersList[0];
+    //    currentPlayer.transform.position = new Vector3(0, 1, -24.5f);
+        
+    //}
     
 }

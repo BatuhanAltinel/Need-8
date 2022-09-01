@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
             {
                 MoveDownQuick();
                 transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+                anim.SetBool("IsSuccess", false);
                 anim.SetInteger("IsRunning", 1);
             }
             else
@@ -100,7 +101,8 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetInteger("IsRunning", 0);
             anim.SetBool("IsSuccess", true);
-        }
+        }else
+            anim.SetBool("IsSuccess", false);
     }
 
     void TransformCheck()
@@ -112,7 +114,7 @@ public class PlayerController : MonoBehaviour
                                                     GameManager.gameManager.currentPlayer.transform.position.y,
                                                     GameManager.gameManager.currentPlayer.transform.position.z);
         }
-        if (this.gameObject.transform.position.z >= 300)
+        if (this.gameObject.transform.position.z >= 300 && this.gameObject.transform.position.z <= -30)
         {
             GameManager.gameManager.isGameOver = true;
         }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager levelManager;
-    public GameObject[] levels = new GameObject[2];
+
+    public GameObject[] levels = new GameObject[3];
     private GameObject currentLevel;
     private int levelNumber = 0;
 
@@ -29,19 +30,29 @@ public class LevelManager : MonoBehaviour
     {
         if (GameManager.gameManager.isSuccess)
         {
-            if (levelNumber <= 1)
+            LevelCheck();
+            if (levelNumber <= levels.Length-1)
             {
                 currentLevel.SetActive(false);
                 levelNumber++;
                 currentLevel = levels[levelNumber];
-                currentLevel.SetActive(true);
+                Instantiate(currentLevel, currentLevel.transform.position, Quaternion.identity);
                 GameManager.gameManager.isSuccess = false;
             }
-            else
-            {
-                GameManager.gameManager.isGameOver = true;
-                levelNumber = 0;
-            }
         }
+    }
+
+    public void LevelCheck()
+    {
+        if(levelNumber >= levels.Length - 1)
+        {
+            levelNumber = 0;
+        }
+    }
+    public void LoadCurrentLevel()
+    {
+        currentLevel = levels[levelNumber];
+        GameManager.gameManager.isSuccess = false;
+        GameManager.gameManager.isGameOver = false;
     }
 }

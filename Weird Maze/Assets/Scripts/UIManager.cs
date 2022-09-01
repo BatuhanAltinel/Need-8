@@ -6,9 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager uiManager;
     public Button restartButton;
     public GameObject failedPanel;
-    
+    public int sceneNumber;
+
+    private void Awake()
+    {
+        sceneNumber = GameManager.gameManager.sceneNumber;
+        if (uiManager == null)
+        {
+            uiManager = this;
+        }
+        else
+            Destroy(gameObject);
+    }
+
     private void Update()
     {
         GameOverUI();
@@ -47,5 +60,6 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         restartButton.gameObject.SetActive(true);
+        SceneManager.LoadScene(sceneNumber +1);
     }
 }
