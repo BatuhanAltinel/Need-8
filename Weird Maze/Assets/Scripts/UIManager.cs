@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager uiManager;
     public Button restartButton;
+    public Button nextButton;
+
+    public GameObject successPanel;
     public GameObject failedPanel;
     public int sceneNumber;
 
@@ -34,6 +37,13 @@ public class UIManager : MonoBehaviour
         restartButton.gameObject.SetActive(false);
         failedPanel.SetActive(false);
     }
+
+    public void NextLevelGame()
+    {
+        GameManager.gameManager.NextLevel();
+        nextButton.gameObject.SetActive(false);
+        successPanel.SetActive(false);
+    }
     public void GameOverUI()
     {
         if (GameManager.gameManager.isGameOver)
@@ -45,7 +55,7 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.gameManager.isSuccess)
         {
-            StartCoroutine(LoadNextScene());
+            StartCoroutine(SuccessPanelActive());
         }
     }
 
@@ -56,10 +66,10 @@ public class UIManager : MonoBehaviour
         restartButton.gameObject.SetActive(true);
     }
 
-    IEnumerator LoadNextScene()
+    IEnumerator SuccessPanelActive()
     {
-        yield return new WaitForSeconds(4f);
-        restartButton.gameObject.SetActive(true);
-        SceneManager.LoadScene(sceneNumber +1);
+        yield return new WaitForSeconds(2f);
+        successPanel.gameObject.SetActive(true);
+        nextButton.gameObject.SetActive(true);
     }
 }

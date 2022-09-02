@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     {
         GameOver();
         FollowTheFirst(playersList);
-        //NextLevel();
     }
 
 
@@ -105,30 +104,27 @@ public class GameManager : MonoBehaviour
             playersList[1].GetComponent<Stacking>().enabled = true;
         }
     }
-    
-    //void NextLevel()
-    //{
-    //    if (isSuccess)
-    //    {
-    //        StartCoroutine(LoadNextLevel());
-    //    }
-    //}
 
-    //IEnumerator LoadNextLevel()
-    //{
-    //    yield return new WaitForSeconds(3f);
+    public void NextLevel()
+    {
+        if (isSuccess)
+        {
+            LevelManager.levelManager.NextLevel();
+            if (playersList.Count > 1)
+            {
+                for (int i = playersList.Count - 1; i > 0; i--)
+                {
+                    playersList[i].SetActive(false);
+                    playersList.RemoveAt(i);
+                    BecomePlayer();
+                }
+            }
+            
+            isGameOver = false;
+            currentPlayer = playersList[0];
+            currentPlayer.transform.position = new Vector3(0, 1, -24.5f);
+        }
+    }
 
-    //    LevelManager.levelManager.NextLevel();
-    //    isGameOver = false;
-    //    for (int i = playersList.Count; i > 2 ; i++)
-    //    {
-    //        Destroy(playersList[i]);
-    //    }
-    //    BecomePlayer();
-    //    FollowerRemoveFromList();
-    //    currentPlayer = playersList[0];
-    //    currentPlayer.transform.position = new Vector3(0, 1, -24.5f);
-        
-    //}
-    
+
 }

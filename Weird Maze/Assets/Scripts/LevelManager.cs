@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
 
     public GameObject[] levels = new GameObject[3];
     private GameObject currentLevel;
-    private int levelNumber = 0;
+    private int levelNumber;
 
 
     private void Awake()
@@ -23,23 +23,21 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        levelNumber = 0;
         currentLevel = levels[levelNumber];
     }
 
     public void NextLevel()
     {
-        if (GameManager.gameManager.isSuccess)
-        {
-            LevelCheck();
-            if (levelNumber <= levels.Length-1)
-            {
-                currentLevel.SetActive(false);
-                levelNumber++;
+            //LevelCheck();
+            //if (levelNumber <= levels.Length-1)
+            //{
+            currentLevel.SetActive(false);
+            levelNumber++;
                 currentLevel = levels[levelNumber];
                 Instantiate(currentLevel, currentLevel.transform.position, Quaternion.identity);
-                GameManager.gameManager.isSuccess = false;
-            }
-        }
+            //}
+            GameManager.gameManager.isSuccess = false;
     }
 
     public void LevelCheck()

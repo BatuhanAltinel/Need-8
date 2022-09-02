@@ -21,10 +21,10 @@ public class CameraFollow : MonoBehaviour
             yDist = distancePerFollowerY * (GameManager.gameManager.playersList.Count - 1);
             zDist = distancePerFollowerZ * (GameManager.gameManager.playersList.Count - 1);
 
-            if (yDist > 3)
-                yDist = 3;
-            if (zDist < -2)
-                zDist = -2;
+            if (yDist > 4)
+                yDist = 4;
+            if (zDist < -3)
+                zDist = -3;
             offset = new Vector3(4.5f, yDist + 6f, zDist - 9f);
             transform.position = new Vector3
                 (GameManager.gameManager.currentPlayer.transform.position.x + offset.x,

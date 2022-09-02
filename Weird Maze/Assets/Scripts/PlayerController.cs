@@ -84,7 +84,11 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(FailedForce());
             StartCoroutine(StopForce());
             StartCoroutine(DestroyGameObject());
-        }      
+        }
+        if (other.gameObject.CompareTag("Speed Up"))
+        {
+            moveSpeed += 3;
+        }
     }
 
     void FailCheck()
