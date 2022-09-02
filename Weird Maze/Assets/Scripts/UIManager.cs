@@ -12,11 +12,10 @@ public class UIManager : MonoBehaviour
 
     public GameObject successPanel;
     public GameObject failedPanel;
-    public int sceneNumber;
+   
 
     private void Awake()
     {
-        sceneNumber = GameManager.gameManager.sceneNumber;
         if (uiManager == null)
         {
             uiManager = this;
@@ -25,11 +24,6 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private void Update()
-    {
-        GameOverUI();
-        SuccessUI();
-    }
 
     public void RestartGame()
     {
@@ -46,14 +40,14 @@ public class UIManager : MonoBehaviour
     }
     public void GameOverUI()
     {
-        if (GameManager.gameManager.isGameOver)
+        if (GameManager.gameManager.isGameOver && !GameManager.gameManager.isSuccess)
         {
             StartCoroutine(FailedPanelActive());
         }
     }
     public void SuccessUI()
     {
-        if (GameManager.gameManager.isSuccess)
+        if (GameManager.gameManager.isSuccess && !GameManager.gameManager.isGameOver)
         {
             StartCoroutine(SuccessPanelActive());
         }
@@ -71,5 +65,6 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         successPanel.gameObject.SetActive(true);
         nextButton.gameObject.SetActive(true);
+        
     }
 }

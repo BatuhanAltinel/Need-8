@@ -29,13 +29,13 @@ public class LevelManager : MonoBehaviour
 
     public void NextLevel()
     {
-            //LevelCheck();
-            //if (levelNumber <= levels.Length-1)
-            //{
-            currentLevel.SetActive(false);
-            levelNumber++;
-                currentLevel = levels[levelNumber];
-                Instantiate(currentLevel, currentLevel.transform.position, Quaternion.identity);
+        //LevelCheck();
+        //if (levelNumber <= levels.Length-1)
+        //{
+        Destroy(currentLevel);
+        levelNumber++;
+        currentLevel = levels[levelNumber];
+        Instantiate(currentLevel, currentLevel.transform.position, Quaternion.identity);
             //}
             GameManager.gameManager.isSuccess = false;
     }

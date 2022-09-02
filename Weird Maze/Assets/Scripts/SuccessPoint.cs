@@ -10,7 +10,7 @@ public class SuccessPoint : MonoBehaviour
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Follower"))
         {
             GameManager.gameManager.isSuccess = true;
-            GameManager.gameManager.sceneNumber++;
+            UIManager.uiManager.SuccessUI();
         }
     }
 }

@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public List<GameObject> playersList = new List<GameObject>();
 
-    public int sceneNumber = 0;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -91,7 +89,7 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver)
         {
-            Debug.Log("GameOver");
+            UIManager.uiManager.GameOverUI();
         }   
     }
 
