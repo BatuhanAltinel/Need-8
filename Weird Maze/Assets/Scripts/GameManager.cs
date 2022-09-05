@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public bool isGameOver = false;
     [HideInInspector] public bool isSuccess = false;
+    [HideInInspector] public bool isGameStart = false;
 
     [HideInInspector] public List<GameObject> playersList = new List<GameObject>();
 
@@ -120,8 +121,13 @@ public class GameManager : MonoBehaviour
             
             isGameOver = false;
             currentPlayer = playersList[0];
+            currentPlayer.GetComponentInChildren<Transform>().rotation = Quaternion.Euler(0, 0, 0);
             currentPlayer.transform.position = new Vector3(0, 1, -24.5f);
         }
+    }
+    public void LoadCurrentLevel()
+    {
+
     }
 
 

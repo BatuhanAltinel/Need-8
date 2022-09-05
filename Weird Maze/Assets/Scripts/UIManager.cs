@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
+        GameManager.gameManager.isGameStart = false;
         restartButton.gameObject.SetActive(false);
         failedPanel.SetActive(false);
     }

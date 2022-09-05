@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveForward()
     {
-        if (!GameManager.gameManager.isGameOver && !GameManager.gameManager.isSuccess)
+        if (!GameManager.gameManager.isGameOver && !GameManager.gameManager.isSuccess && GameManager.gameManager.isGameStart)
         {
             if (this.gameObject == GameManager.gameManager.playersList[0])
             {
