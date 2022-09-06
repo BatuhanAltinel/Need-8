@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
     
     private Vector3 offset = new Vector3(2.9f, 6f, -9.5f);
 
-    public GameObject levelEnd;
+    private GameObject levelEnd;
     private float distancePerFollowerZ = -0.25f;
     private float distancePerFollowerY = 0.3f;
 
@@ -18,6 +18,10 @@ public class CameraFollow : MonoBehaviour
     private float yDist = 0;
     private float zDist = 0;
 
+    private void Awake()
+    {
+        levelEnd = GameObject.Find("Level End");
+    }
     void LateUpdate()
     {
         if (!GameManager.gameManager.isGameOver && !GameManager.gameManager.isSuccess)
@@ -90,9 +94,10 @@ public class CameraFollow : MonoBehaviour
     {
         if (success)
         {
-            Vector3 SuccessPos = new Vector3(levelEnd.transform.position.x + 19f,
-                                            levelEnd.transform.position.y + 15.85f,
-                                            levelEnd.transform.position.z - 32.4f);
+            //Debug.Log("level end transfor : " + levelEnd.transform.position);
+            Vector3 SuccessPos = new Vector3(GameManager.gameManager.currentPlayer.transform.position.x + 20f,
+                                            GameManager.gameManager.currentPlayer.transform.position.y + 10.85f,
+                                            GameManager.gameManager.currentPlayer.transform.position.z - 4f);
             transform.position = new Vector3
                     (Mathf.Lerp(transform.position.x, SuccessPos.x, 2f * Time.deltaTime),
                     Mathf.Lerp(transform.position.y, SuccessPos.y, 2f * Time.deltaTime),
