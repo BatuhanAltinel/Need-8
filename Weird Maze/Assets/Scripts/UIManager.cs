@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
         nextButton.gameObject.SetActive(false);
         successPanel.SetActive(false);
     }
+
     public void GameOverUI()
     {
         if (GameManager.gameManager.isGameOver && !GameManager.gameManager.isSuccess)
@@ -66,6 +67,5 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         successPanel.gameObject.SetActive(true);
         nextButton.gameObject.SetActive(true);
-        
     }
 }

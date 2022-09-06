@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddb91d8680d36e4e895c286d51ee247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
+  moveSpeed: 8
 --- !u!23 &3058082956086541416
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -194,17 +194,17 @@ PrefabInstance:
     - target: {fileID: 6617662595044594214, guid: 3da2a621c7228f7499727bc1b1703760,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6617662595044594214, guid: 3da2a621c7228f7499727bc1b1703760,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6617662595044594214, guid: 3da2a621c7228f7499727bc1b1703760,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6617662595044594214, guid: 3da2a621c7228f7499727bc1b1703760,
         type: 3}

@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
             if (this.gameObject == GameManager.gameManager.playersList[0])
             {
                 MoveDownQuick();
+                this.gameObject.GetComponentInChildren<Transform>().rotation = Quaternion.Euler(0, 0, 0);
                 transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
                 anim.SetBool("IsSuccess", false);
                 anim.SetInteger("IsRunning", 1);
@@ -128,7 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         if(!GameManager.gameManager.isGameOver)
-            this.gameObject.SetActive(false);
+            Destroy(gameObject);
     }
     IEnumerator FailedForce()
     {

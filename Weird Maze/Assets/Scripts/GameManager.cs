@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         GameOver();
         FollowTheFirst(playersList);
+        //SuccessPlatformPoints();
     }
 
 
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     public void FollowTheFirst(List<GameObject> playersList)
     {
-        if (!isGameOver && playersList.Count > 1)
+        if (!isGameOver && !isSuccess && playersList.Count > 1)
         {
             currentPlayer = playersList[0];
             for (int i = 0; i < playersList.Count - 1; i++)
@@ -113,7 +114,7 @@ public class GameManager : MonoBehaviour
             {
                 for (int i = playersList.Count - 1; i > 0; i--)
                 {
-                    playersList[i].SetActive(false);
+                    Destroy(playersList[i]);
                     playersList.RemoveAt(i);
                     BecomePlayer();
                 }
@@ -121,14 +122,51 @@ public class GameManager : MonoBehaviour
             
             isGameOver = false;
             currentPlayer = playersList[0];
-            currentPlayer.GetComponentInChildren<Transform>().rotation = Quaternion.Euler(0, 0, 0);
+            currentPlayer.GetComponentInChildren<Transform>().Rotate(new Vector3(0, 0, 0));
             currentPlayer.transform.position = new Vector3(0, 1, -24.5f);
         }
     }
+
     public void LoadCurrentLevel()
     {
+        LevelManager.levelManager.LoadCurrentLevel();
+            
+        if (playersList.Count > 1) 
+        {    
+            for (int i = playersList.Count - 1; i > 0; i--) 
+            { 
+                Destroy(playersList[i]);
+                playersList.RemoveAt(i);   
+                BecomePlayer();
+            }
+        }
 
+        isGameOver = false;
+        currentPlayer = playersList[0];
+        currentPlayer.transform.position = new Vector3(0, 1, -24.5f);
     }
 
+    public void SuccessPlatformPoints()
+    {
+        if (isSuccess)
+        {
+            for (int i = 0; i < playersList.Count-1; i++)
+            {
+                float randomX = Random.Range(-5.5f, 5.5f);
+                float randomZ = Random.Range(0.5f, 9f);
+
+                Vector3 dancePoint = new Vector3(randomX + playersList[i].transform.position.x,
+                    playersList[i].transform.position.y, playersList[i].transform.position.z + randomZ);
+
+                playersList[i].transform.position = new Vector3
+                    (Mathf.Lerp(playersList[i].transform.position.x, dancePoint.x, 50f * Time.deltaTime),
+                    playersList[i].transform.position.y,
+                    Mathf.Lerp(playersList[i].transform.position.z, dancePoint.z, 50f * Time.deltaTime));
+
+                playersList[i + 1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[i].transform, false);
+            }
+        }
+        
+    }
 
 }

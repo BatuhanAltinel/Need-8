@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager levelManager;
 
-    public GameObject[] levels = new GameObject[3];
+    public GameObject[] levels = new GameObject[4];
     private GameObject currentLevel;
     private GameObject nextLevel;
     private GameObject entryLevel;
@@ -49,15 +49,19 @@ public class LevelManager : MonoBehaviour
 
     public void LevelCheck()
     {
-        if(levelNumber >= levels.Length)
+        if (levelNumber >= levels.Length)
         {
             levelNumber = 0;
         }
+        else if (levelNumber < 0)
+            levelNumber = levels.Length - 1;
     }
     public void LoadCurrentLevel()
     {
-        currentLevel = levels[levelNumber];
+        levelNumber--;
         GameManager.gameManager.isSuccess = false;
         GameManager.gameManager.isGameOver = false;
+        NextLevel();
     }
+
 }
