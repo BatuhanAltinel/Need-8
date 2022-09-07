@@ -34,13 +34,10 @@ public class LevelManager : MonoBehaviour
     {
         entryLevel.SetActive(false);
         Destroy(currentLevel);
-        Debug.Log(currentLevel.name + " destroyed");
         levelNumber++;
         LevelCheck();
         
         nextLevel = levels[levelNumber];
-        Debug.Log("Next level is " + nextLevel.name);
-        //nextLevel.SetActive(true);
         nextLevel = Instantiate(nextLevel, nextLevel.transform.position, Quaternion.identity);
         currentLevel = nextLevel;
         

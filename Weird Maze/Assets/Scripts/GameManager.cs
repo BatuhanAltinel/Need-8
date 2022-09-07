@@ -27,12 +27,12 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameManager);
         playersList.Add(currentPlayer);
+        
     }
     private void Update()
     {
         GameOver();
         FollowTheFirst(playersList);
-        //SuccessPlatformPoints();
     }
 
 
@@ -122,8 +122,9 @@ public class GameManager : MonoBehaviour
             
             isGameOver = false;
             currentPlayer = playersList[0];
-            currentPlayer.GetComponentInChildren<Transform>().Rotate(new Vector3(0, 0, 0));
             currentPlayer.transform.position = new Vector3(0, 1, -24.5f);
+            
+
         }
     }
 
@@ -150,7 +151,7 @@ public class GameManager : MonoBehaviour
     {
         if (isSuccess)
         {
-            for (int i = 0; i < playersList.Count-1; i++)
+            for (int i = playersList.Count - 1; i > 0; i--)
             {
                 float randomX = Random.Range(-5.5f, 5.5f);
                 float randomZ = Random.Range(0.5f, 9f);
@@ -159,11 +160,11 @@ public class GameManager : MonoBehaviour
                     playersList[i].transform.position.y, playersList[i].transform.position.z + randomZ);
 
                 playersList[i].transform.position = new Vector3
-                    (Mathf.Lerp(playersList[i].transform.position.x, dancePoint.x, 50f * Time.deltaTime),
+                    (Mathf.Lerp(playersList[i].transform.position.x, dancePoint.x, 30f * Time.deltaTime),
                     playersList[i].transform.position.y,
-                    Mathf.Lerp(playersList[i].transform.position.z, dancePoint.z, 50f * Time.deltaTime));
+                    Mathf.Lerp(playersList[i].transform.position.z, dancePoint.z, 30f * Time.deltaTime));
 
-                playersList[i + 1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[i].transform, false);
+                playersList[i].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[i-1].transform, false);
             }
         }
         

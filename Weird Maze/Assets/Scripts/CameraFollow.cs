@@ -97,7 +97,7 @@ public class CameraFollow : MonoBehaviour
             //Debug.Log("level end transfor : " + levelEnd.transform.position);
             Vector3 SuccessPos = new Vector3(GameManager.gameManager.currentPlayer.transform.position.x + 20f,
                                             GameManager.gameManager.currentPlayer.transform.position.y + 10.85f,
-                                            GameManager.gameManager.currentPlayer.transform.position.z - 4f);
+                                            GameManager.gameManager.currentPlayer.transform.position.z + 1f);
             transform.position = new Vector3
                     (Mathf.Lerp(transform.position.x, SuccessPos.x, 2f * Time.deltaTime),
                     Mathf.Lerp(transform.position.y, SuccessPos.y, 2f * Time.deltaTime),
