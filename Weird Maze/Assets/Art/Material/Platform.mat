@@ -73,10 +73,10 @@ Material:
     - _OcclusionStrength: 1
     - _Offset1: 0
     - _Offset2: 0
-    - _Outline: 1.43
+    - _Outline: 4.7
     - _Parallax: 0.02
     - _RampSmooth: 0.01
-    - _RampThreshold: 0.83
+    - _RampThreshold: 0.773
     - _Shininess: 0.07
     - _SmoothnessTextureChannel: 0
     - _SpecSmooth: 0.05

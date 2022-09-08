@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private Rigidbody myBody;
     float forceImpulse = 30f;
+    public ParticleSystem dustParticle;
+    public ParticleSystem starTrail;
 
     // Start is called before the first frame update
     void Awake()
@@ -75,13 +77,16 @@ public class PlayerController : MonoBehaviour
             {
                 GameManager.gameManager.BecomePlayer();
                 GameManager.gameManager.FollowerRemoveFromList();
+                dustParticle.Play();
             }
             else
             {
                 GameManager.gameManager.currentPlayer = GameManager.gameManager.playersList[0];
                 GameManager.gameManager.BecomePlayer();
                 GameManager.gameManager.FollowerRemoveFromList();
+                dustParticle.Play();
             }
+            SoundManager.soundManager.DustAudio();
             StartCoroutine(FailedForce());
             StartCoroutine(StopForce());
             StartCoroutine(DestroyGameObject());
@@ -89,6 +94,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Speed Up"))
         {
             moveSpeed += 3;
+            starTrail.Play();
+            SoundManager.soundManager.SpeedAudio();
         }
     }
 
@@ -98,6 +105,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetInteger("IsRunning", 0);
             anim.SetBool("IsCrush", true);
+            starTrail.Stop();
         }
     }
     void SuccessCheck()

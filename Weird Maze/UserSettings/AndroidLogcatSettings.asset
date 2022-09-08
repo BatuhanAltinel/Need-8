@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RFCRC16Z6BT",
         "name": "com.LeobGames.WeirdMaze",
-        "processId": 21426,
+        "processId": 7191,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -24,6 +24,12 @@
             "deviceId": "RFCRC16Z6BT",
             "name": "com.LeobGames.WeirdMaze",
             "processId": 21426,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC16Z6BT",
+            "name": "com.LeobGames.WeirdMaze",
+            "processId": 7191,
             "exited": false
         }
     ],

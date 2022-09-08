@@ -134,16 +134,17 @@ public class GameManager : MonoBehaviour
             
         if (playersList.Count > 1) 
         {    
-            for (int i = playersList.Count - 1; i > 0; i--) 
+            for (int i = playersList.Count - 1; i >= 0; i--) 
             { 
                 Destroy(playersList[i]);
                 playersList.RemoveAt(i);   
-                BecomePlayer();
+                //BecomePlayer();
             }
+            Instantiate(currentPlayer);
+            playersList.Add(currentPlayer);
         }
-
+        isGameStart = true;
         isGameOver = false;
-        currentPlayer = playersList[0];
         currentPlayer.transform.position = new Vector3(0, 1, -24.5f);
     }
 

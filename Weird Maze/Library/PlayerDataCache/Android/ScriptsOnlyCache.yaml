@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - PlayerController
     - PlayerFollow
     - RotatingRoad
+    - SlideAnimation
     - Stacking
     - SuccessPoint
     - UIManager
@@ -31,8 +32,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -93,45 +96,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1646}
     - Class: 114
-      Script: {instanceID: 1714}
+      Script: {instanceID: 1648}
     - Class: 114
-      Script: {instanceID: 1734}
+      Script: {instanceID: 1716}
     - Class: 114
-      Script: {instanceID: 1778}
+      Script: {instanceID: 1736}
     - Class: 114
-      Script: {instanceID: 2028}
+      Script: {instanceID: 1780}
     - Class: 114
-      Script: {instanceID: 2144}
+      Script: {instanceID: 2030}
     - Class: 114
-      Script: {instanceID: 2342}
+      Script: {instanceID: 2146}
     - Class: 114
-      Script: {instanceID: 2392}
+      Script: {instanceID: 2344}
     - Class: 114
-      Script: {instanceID: 2408}
+      Script: {instanceID: 2386}
     - Class: 114
-      Script: {instanceID: 2732}
+      Script: {instanceID: 2396}
     - Class: 114
-      Script: {instanceID: 2798}
+      Script: {instanceID: 2734}
     - Class: 114
-      Script: {instanceID: 2956}
+      Script: {instanceID: 2800}
     - Class: 114
-      Script: {instanceID: 3008}
+      Script: {instanceID: 2958}
     - Class: 114
-      Script: {instanceID: 3090}
+      Script: {instanceID: 3010}
     - Class: 114
-      Script: {instanceID: 3218}
+      Script: {instanceID: 3092}
     - Class: 114
-      Script: {instanceID: 3420}
+      Script: {instanceID: 3220}
     - Class: 114
-      Script: {instanceID: 3564}
+      Script: {instanceID: 3422}
     - Class: 114
-      Script: {instanceID: 4880}
+      Script: {instanceID: 3566}
     - Class: 114
-      Script: {instanceID: 5232}
+      Script: {instanceID: 3950}
     - Class: 114
-      Script: {instanceID: 5488}
+      Script: {instanceID: 4884}
     - Class: 114
-      Script: {instanceID: 41946}
+      Script: {instanceID: 5236}
+    - Class: 114
+      Script: {instanceID: 5492}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -161,6 +166,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GraphicRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 699619b86d9359741a4f58540298c80b
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Text
   - hash:
       serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
@@ -295,7 +306,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: 0f79b27ee40fe5cbf1a6d0cadabee676
+      Hash: f8c831f80d3da3e4ee9a3a98e1150440
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -331,16 +342,16 @@ ScriptsOnlyBuild:
     className: Stacking
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SlideAnimation
+  - hash:
+      serializedVersion: 2
       Hash: 800c50acba124432abb4cf0d47202e06
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
-  - hash:
-      serializedVersion: 2
-      Hash: 699619b86d9359741a4f58540298c80b
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Text
   - hash:
       serializedVersion: 2
       Hash: cd0ecdca0166232906c6f2df9dddc3d3
@@ -637,6 +648,12 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
+      Hash: 970227a4459058bdc2cd00e602f1a7af
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LevelManager
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
@@ -907,7 +924,7 @@ ScriptsOnlyBuild:
     className: InputSystemObject
   - hash:
       serializedVersion: 2
-      Hash: 360e242c719babb81540a1f5b1c2ab36
+      Hash: 6a230be9a896ab4ff61ad22bb1ec9c68
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -959,13 +976,7 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
-  - hash:
-      serializedVersion: 2
-      Hash: 970227a4459058bdc2cd00e602f1a7af
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: LevelManager
   platform: 13
   scenePathNames:
   - Assets/Scenes/GamePlay Scene.unity
-  playerPath: C:/Users/altin/Desktop/weirdMaze-third-test.apk
+  playerPath: C:/Users/altin/Desktop/weirdMaze-fourth-test.apk

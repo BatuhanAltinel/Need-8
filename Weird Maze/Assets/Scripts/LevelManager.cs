@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     public GameObject[] levels = new GameObject[4];
     private GameObject currentLevel;
     private GameObject nextLevel;
-    private GameObject entryLevel;
+    //private GameObject entryLevel;
     private int levelNumber;
 
 
@@ -25,20 +25,22 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        entryLevel = GameObject.Find("Level entry");
+        //entryLevel = GameObject.Find("Level entry");
         levelNumber = 0;
         currentLevel = levels[levelNumber];
     }
 
     public void NextLevel()
     {
-        entryLevel.SetActive(false);
-        Destroy(currentLevel);
+        //entryLevel.SetActive(false);
+        //Destroy(currentLevel);
+        currentLevel.SetActive(false);
         levelNumber++;
         LevelCheck();
         
         nextLevel = levels[levelNumber];
         nextLevel = Instantiate(nextLevel, nextLevel.transform.position, Quaternion.identity);
+        nextLevel.SetActive(true);
         currentLevel = nextLevel;
         
         GameManager.gameManager.isSuccess = false;

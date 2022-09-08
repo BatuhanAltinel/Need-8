@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         GameManager.gameManager.isGameStart = false;
+        //GameManager.gameManager.LoadCurrentLevel();
         restartButton.gameObject.SetActive(false);
         failedPanel.SetActive(false);
     }
