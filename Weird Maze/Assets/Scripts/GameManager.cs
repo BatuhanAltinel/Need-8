@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         {
             playersList.RemoveAt(0);
         }
-        if (playersList.Count == 1)
+        else if(!isGameOver && playersList.Count <= 1)
         {
             playersList.Add(currentPlayer);
             playersList.RemoveAt(0);
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
         {
             playersList[1].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[0].transform, false);
             currentPlayer = playersList[1];
-            playersList[1].GetComponent<Stacking>().enabled = true;
+            currentPlayer.GetComponent<Stacking>().enabled = true;
         }
     }
 
