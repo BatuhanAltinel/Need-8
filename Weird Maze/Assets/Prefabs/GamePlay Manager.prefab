@@ -50,5 +50,5 @@ MonoBehaviour:
   spawnPoint: {x: 0, y: 0, z: 0}
   isGameOver: 0
   isSuccess: 0
+  isGameStart: 0
   playersList: []
-  sceneNumber: 0

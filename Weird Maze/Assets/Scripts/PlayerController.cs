@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2;
+
     private Animator anim;
     private Rigidbody myBody;
+
     float forceImpulse = 30f;
+
     public ParticleSystem dustParticle;
     public ParticleSystem starTrail;
+
+    public GameObject playerNorig;
 
     // Start is called before the first frame update
     void Awake()
@@ -32,7 +37,8 @@ public class PlayerController : MonoBehaviour
         {
             if (this.gameObject == GameManager.gameManager.playersList[0])
             {
-                this.gameObject.GetComponentInChildren<Transform>().localEulerAngles = new Vector3(0,0,0);
+                playerNorig.transform.rotation = Quaternion.Euler(0,0,0);
+                //playerNorig.transform.position = new Vector3(0, 0, 0);
                 MoveDownQuick();
                 transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
                 anim.SetBool("IsSuccess", false);

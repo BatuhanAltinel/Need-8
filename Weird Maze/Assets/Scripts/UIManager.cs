@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public static UIManager uiManager;
     public Button restartButton;
     public Button nextButton;
+    public Button pauseButton;
+    public Button playButton;
 
     public GameObject successPanel;
     public GameObject failedPanel;
@@ -39,6 +41,20 @@ public class UIManager : MonoBehaviour
         GameManager.gameManager.NextLevel();
         nextButton.gameObject.SetActive(false);
         successPanel.SetActive(false);
+    }
+
+    public void PauseGame()
+    {
+        pauseButton.gameObject.SetActive(false);
+        playButton.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        pauseButton.gameObject.SetActive(true);
+        playButton.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void GameOverUI()

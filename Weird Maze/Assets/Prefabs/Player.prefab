@@ -67,6 +67,7 @@ MonoBehaviour:
   moveSpeed: 7
   dustParticle: {fileID: 2981176980196555720}
   starTrail: {fileID: 4898327889247380510}
+  playerNorig: {fileID: 483454462774163728}
 --- !u!23 &3058082956086541416
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -215,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19826678, guid: c05e92eaee7a00844867e5edc8e0dde1, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19826678, guid: c05e92eaee7a00844867e5edc8e0dde1, type: 3}
       propertyPath: InitialModule.startSize.minScalar
@@ -421,6 +422,12 @@ PrefabInstance:
     - {fileID: 6655212406061822055, guid: 3da2a621c7228f7499727bc1b1703760, type: 3}
     - {fileID: 6655212406061822072, guid: 3da2a621c7228f7499727bc1b1703760, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3da2a621c7228f7499727bc1b1703760, type: 3}
+--- !u!1 &483454462774163728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5808932950921021596, guid: 3da2a621c7228f7499727bc1b1703760,
+    type: 3}
+  m_PrefabInstance: {fileID: 6208470438697152908}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1008318035188736938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6617662595044594214, guid: 3da2a621c7228f7499727bc1b1703760,

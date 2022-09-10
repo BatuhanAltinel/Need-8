@@ -75,16 +75,17 @@ public class GameManager : MonoBehaviour
 
     public void FollowerRemoveFromList()
     {
-        if (!isGameOver && playersList.Count >= 1)
+        if (!isGameOver && playersList.Count > 1)
         {
-            if (playersList.Count == 1)
-            {
-                playersList.Add(currentPlayer);
-                isGameOver = true;
-            }
             playersList.RemoveAt(0);
         }
-            
+        if (playersList.Count == 1)
+        {
+            playersList.Add(currentPlayer);
+            playersList.RemoveAt(0);
+            isGameOver = true;
+        }
+
     }
 
     public void GameOver()
@@ -154,8 +155,10 @@ public class GameManager : MonoBehaviour
         {
             for (int i = playersList.Count - 1; i > 0; i--)
             {
+                playersList[i].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[i - 1].transform, false);
+
                 float randomX = Random.Range(-5.5f, 5.5f);
-                float randomZ = Random.Range(0.5f, 9f);
+                float randomZ = Random.Range(1f, 10f);
 
                 Vector3 dancePoint = new Vector3(randomX + playersList[i].transform.position.x,
                     playersList[i].transform.position.y, playersList[i].transform.position.z + randomZ);
@@ -164,8 +167,6 @@ public class GameManager : MonoBehaviour
                     (Mathf.Lerp(playersList[i].transform.position.x, dancePoint.x, 30f * Time.deltaTime),
                     playersList[i].transform.position.y,
                     Mathf.Lerp(playersList[i].transform.position.z, dancePoint.z, 30f * Time.deltaTime));
-
-                playersList[i].GetComponent<PlayerFollow>().UpdatePlayerPosition(playersList[i-1].transform, false);
             }
         }
         

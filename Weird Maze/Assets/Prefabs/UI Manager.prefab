@@ -44,5 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restartButton: {fileID: 0}
+  nextButton: {fileID: 0}
+  pauseButton: {fileID: 0}
+  playButton: {fileID: 0}
+  successPanel: {fileID: 0}
   failedPanel: {fileID: 0}
-  sceneNumber: 0

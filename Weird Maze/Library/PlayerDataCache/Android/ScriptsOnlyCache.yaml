@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - PlayerFollow
     - RotatingRoad
     - SlideAnimation
+    - SoundManager
     - Stacking
     - SuccessPoint
     - UIManager
@@ -32,10 +33,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -48,6 +47,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Outline
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/GamePlay Scene.unity:
@@ -79,6 +79,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
     - Class: 90
@@ -92,51 +96,55 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1644}
-    - Class: 114
       Script: {instanceID: 1646}
     - Class: 114
       Script: {instanceID: 1648}
     - Class: 114
-      Script: {instanceID: 1716}
+      Script: {instanceID: 1650}
     - Class: 114
-      Script: {instanceID: 1736}
+      Script: {instanceID: 1718}
     - Class: 114
-      Script: {instanceID: 1780}
+      Script: {instanceID: 1738}
     - Class: 114
-      Script: {instanceID: 2030}
+      Script: {instanceID: 1782}
     - Class: 114
-      Script: {instanceID: 2146}
+      Script: {instanceID: 2032}
     - Class: 114
-      Script: {instanceID: 2344}
+      Script: {instanceID: 2148}
     - Class: 114
-      Script: {instanceID: 2386}
+      Script: {instanceID: 2346}
     - Class: 114
-      Script: {instanceID: 2396}
+      Script: {instanceID: 2388}
     - Class: 114
-      Script: {instanceID: 2734}
+      Script: {instanceID: 2398}
     - Class: 114
-      Script: {instanceID: 2800}
+      Script: {instanceID: 2564}
     - Class: 114
-      Script: {instanceID: 2958}
+      Script: {instanceID: 2738}
     - Class: 114
-      Script: {instanceID: 3010}
+      Script: {instanceID: 2804}
     - Class: 114
-      Script: {instanceID: 3092}
+      Script: {instanceID: 2962}
     - Class: 114
-      Script: {instanceID: 3220}
+      Script: {instanceID: 3014}
     - Class: 114
-      Script: {instanceID: 3422}
+      Script: {instanceID: 3096}
     - Class: 114
-      Script: {instanceID: 3566}
+      Script: {instanceID: 3224}
     - Class: 114
-      Script: {instanceID: 3950}
+      Script: {instanceID: 3426}
     - Class: 114
-      Script: {instanceID: 4884}
+      Script: {instanceID: 3570}
     - Class: 114
-      Script: {instanceID: 5236}
+      Script: {instanceID: 3860}
     - Class: 114
-      Script: {instanceID: 5492}
+      Script: {instanceID: 3954}
+    - Class: 114
+      Script: {instanceID: 4888}
+    - Class: 114
+      Script: {instanceID: 5240}
+    - Class: 114
+      Script: {instanceID: 5496}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -148,6 +156,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -306,7 +318,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: f8c831f80d3da3e4ee9a3a98e1150440
+      Hash: fb386020d6e3e72b8e0dee96206c61aa
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -370,6 +382,12 @@ ScriptsOnlyBuild:
     assemblyName: ToonyColorsPro2.Demo.dll
     namespaceName: ToonyColorsPro.Demo
     className: TCP2_Demo_PBS
+  - hash:
+      serializedVersion: 2
+      Hash: cb2eff0f19b12ef3a9d2b868d1921b5d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SoundManager
   - hash:
       serializedVersion: 2
       Hash: c1d728126ff1918728036c59106d32b2
@@ -504,7 +522,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 459b50185a167c1d210a783633c72823
+      Hash: 835e6f7e39bf4ce4d72d3770b709f07b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -979,4 +997,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/GamePlay Scene.unity
-  playerPath: C:/Users/altin/Desktop/weirdMaze-fourth-test.apk
+  playerPath: C:/Users/altin/Desktop/weirdMaze-fifth-test.apk
