@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
+
     public GameObject playerPrefab;
     [HideInInspector]public GameObject playerInstantiate = null;
     public GameObject currentPlayer;
@@ -127,26 +128,6 @@ public class GameManager : MonoBehaviour
             
 
         }
-    }
-
-    public void LoadCurrentLevel()
-    {
-        LevelManager.levelManager.LoadCurrentLevel();
-            
-        if (playersList.Count > 1) 
-        {    
-            for (int i = playersList.Count - 1; i >= 0; i--) 
-            { 
-                Destroy(playersList[i]);
-                playersList.RemoveAt(i);   
-                //BecomePlayer();
-            }
-            Instantiate(currentPlayer);
-            playersList.Add(currentPlayer);
-        }
-        isGameStart = true;
-        isGameOver = false;
-        currentPlayer.transform.position = new Vector3(0, 1, -24.5f);
     }
 
     public void SuccessPlatformPoints()

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public static UIManager uiManager;
+
     public Button restartButton;
     public Button nextButton;
     public Button pauseButton;
@@ -31,7 +32,7 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         GameManager.gameManager.isGameStart = false;
-        //GameManager.gameManager.LoadCurrentLevel();
+
         restartButton.gameObject.SetActive(false);
         failedPanel.SetActive(false);
     }

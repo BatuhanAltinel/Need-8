@@ -31,15 +31,7 @@ public class Stacking : MonoBehaviour
                 GameManager.gameManager.PlayerSpawn(_firstPlayerPos, plusNumber);
                 _firstPlayerPos = GameManager.gameManager.spawnPoint;
                 _firstPlayerPos.y += 1.4f;
-                StartCoroutine(DestroyTriggerObject(other.gameObject));
             }
         }
-    }
-
-    IEnumerator DestroyTriggerObject(GameObject obj)
-    {
-        yield return new WaitForSeconds(1f);
-        obj.gameObject.SetActive(false);
-
     }
 }

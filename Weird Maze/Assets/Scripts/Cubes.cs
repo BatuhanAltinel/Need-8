@@ -25,8 +25,15 @@ public class Cubes : MonoBehaviour
                 this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
                 Debug.Log("triger false");
                 triggerCount = 0;
+                StartCoroutine(TriggerTrue());
             }
         }
+    }
+
+    IEnumerator TriggerTrue()
+    {
+        yield return new WaitForSeconds(2f);
+        this.gameObject.GetComponent<BoxCollider>().isTrigger = true;
     }
     
 }
