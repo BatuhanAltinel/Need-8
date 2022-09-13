@@ -5,7 +5,7 @@ using UnityEngine;
 public class Stacking : MonoBehaviour
 {
     private Vector3 _firstPlayerPos;
-    private bool isTriggered = false;
+    private bool isTriggered = true;
 
     private void Update()
     {
@@ -23,15 +23,21 @@ public class Stacking : MonoBehaviour
         int plusNumber = (int)char.GetNumericValue(other.gameObject.name[0]);
         if (other.CompareTag("4+Trigger"))
         {
-            isTriggered = true;
-            
             if (isTriggered)
             {
                 isTriggered = false;
                 GameManager.gameManager.PlayerSpawn(_firstPlayerPos, plusNumber);
+                Debug.Log("plus triggered");
                 _firstPlayerPos = GameManager.gameManager.spawnPoint;
                 _firstPlayerPos.y += 1.4f;
             }
+            StartCoroutine(TriggerTrue());
+            
         }
+    }
+    IEnumerator TriggerTrue()
+    {
+        yield return new WaitForSeconds(1f);
+        isTriggered = true;
     }
 }

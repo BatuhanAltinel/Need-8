@@ -29,11 +29,11 @@ public class Cubes : MonoBehaviour
             }
         }
     }
-
     IEnumerator TriggerTrue()
     {
         yield return new WaitForSeconds(2f);
         this.gameObject.GetComponent<BoxCollider>().isTrigger = true;
     }
-    
+
+
 }
