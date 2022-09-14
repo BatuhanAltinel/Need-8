@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelNumber = 3;
+        levelNumber = 0;
         currentLevel = levels[levelNumber];
         currentLevel.SetActive(true);
     }

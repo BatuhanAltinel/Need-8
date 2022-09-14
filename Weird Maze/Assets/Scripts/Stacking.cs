@@ -5,7 +5,6 @@ using UnityEngine;
 public class Stacking : MonoBehaviour
 {
     private Vector3 _firstPlayerPos;
-    private bool isTriggered = true;
 
     private void Update()
     {
@@ -16,28 +15,26 @@ public class Stacking : MonoBehaviour
             _firstPlayerPos += new Vector3(0, 1.4f * (float)(GameManager.gameManager.playersList.Count - 1), 0);
         }
     }
-    
+
 
     private void OnTriggerEnter(Collider other)
     {
         int plusNumber = (int)char.GetNumericValue(other.gameObject.name[0]);
         if (other.CompareTag("4+Trigger"))
         {
-            if (isTriggered)
-            {
-                isTriggered = false;
-                GameManager.gameManager.PlayerSpawn(_firstPlayerPos, plusNumber);
-                Debug.Log("plus triggered");
-                _firstPlayerPos = GameManager.gameManager.spawnPoint;
-                _firstPlayerPos.y += 1.4f;
-            }
-            StartCoroutine(TriggerTrue());
-            
+             GameManager.gameManager.PlayerSpawn(_firstPlayerPos, plusNumber);
+             Debug.Log("plus triggered");
+             _firstPlayerPos = GameManager.gameManager.spawnPoint;
+             _firstPlayerPos.y += 1.4f;
+            other.gameObject.GetComponent<BoxCollider>().isTrigger = false;
+            StartCoroutine(TriggerTrue(other.gameObject));
         }
     }
-    IEnumerator TriggerTrue()
+
+
+    IEnumerator TriggerTrue(GameObject obj)
     {
-        yield return new WaitForSeconds(1f);
-        isTriggered = true;
+        yield return new WaitForSeconds(3f);
+        obj.GetComponent<BoxCollider>().isTrigger = true;
     }
 }

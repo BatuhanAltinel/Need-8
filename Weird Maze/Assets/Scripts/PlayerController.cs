@@ -79,19 +79,19 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Cube") && !GameManager.gameManager.isGameOver)
         {
-            //if(GameManager.gameManager.playersList[0].name == "Player" )
-            //{
-            //    GameManager.gameManager.BecomePlayer();
-            //    GameManager.gameManager.FollowerRemoveFromList();
-            //    dustParticle.Play();
-            //}
-            //else
-            //{
+            if (GameManager.gameManager.playersList[0].name == "Player")
+            {
+                GameManager.gameManager.BecomePlayer();
+                GameManager.gameManager.FollowerRemoveFromList();
+                dustParticle.Play();
+            }
+            else
+            {
                 GameManager.gameManager.currentPlayer = GameManager.gameManager.playersList[0];
                 GameManager.gameManager.BecomePlayer();
                 GameManager.gameManager.FollowerRemoveFromList();
                 dustParticle.Play();
-            //}
+            }
             SoundManager.soundManager.DustAudio();
             StartCoroutine(FailedForce());
             StartCoroutine(StopForce());

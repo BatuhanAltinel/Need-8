@@ -13,6 +13,10 @@ public class Cubes : MonoBehaviour
         triggerCount = 0;
         cubeName = int.Parse(this.gameObject.name);
     }
+    private void OnEnable()
+    {
+        this.gameObject.GetComponent<BoxCollider>().isTrigger = true;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,15 +29,8 @@ public class Cubes : MonoBehaviour
                 this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
                 Debug.Log("triger false");
                 triggerCount = 0;
-                StartCoroutine(TriggerTrue());
             }
         }
     }
-    IEnumerator TriggerTrue()
-    {
-        yield return new WaitForSeconds(2f);
-        this.gameObject.GetComponent<BoxCollider>().isTrigger = true;
-    }
-
 
 }

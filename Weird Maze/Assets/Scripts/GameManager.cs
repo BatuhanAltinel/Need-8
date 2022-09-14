@@ -121,12 +121,9 @@ public class GameManager : MonoBehaviour
                     BecomePlayer();
                 }
             }
-            
             isGameOver = false;
             currentPlayer = playersList[0];
             currentPlayer.transform.position = new Vector3(0, 1, -24.5f);
-            
-
         }
     }
 
