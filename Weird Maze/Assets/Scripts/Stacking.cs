@@ -8,7 +8,6 @@ public class Stacking : MonoBehaviour
 
     private void Update()
     {
-        //_firstPlayerPos = new Vector3(this.transform.position.x,this.transform.position.y + 1.3f,this.transform.position.z);
         _firstPlayerPos = GameManager.gameManager.currentPlayer.transform.position + new Vector3(0,1.4f,0);
         if(GameManager.gameManager.playersList.Count > 1)
         {
@@ -26,15 +25,6 @@ public class Stacking : MonoBehaviour
              Debug.Log("plus triggered");
              _firstPlayerPos = GameManager.gameManager.spawnPoint;
              _firstPlayerPos.y += 1.4f;
-            other.gameObject.GetComponent<BoxCollider>().isTrigger = false;
-            StartCoroutine(TriggerTrue(other.gameObject));
         }
-    }
-
-
-    IEnumerator TriggerTrue(GameObject obj)
-    {
-        yield return new WaitForSeconds(3f);
-        obj.GetComponent<BoxCollider>().isTrigger = true;
     }
 }

@@ -94,7 +94,6 @@ public class CameraFollow : MonoBehaviour
     {
         if (success)
         {
-            //Debug.Log("level end transfor : " + levelEnd.transform.position);
             Vector3 SuccessPos = new Vector3(GameManager.gameManager.currentPlayer.transform.position.x + 20f,
                                             GameManager.gameManager.currentPlayer.transform.position.y + 10.85f,
                                             GameManager.gameManager.currentPlayer.transform.position.z + 1f);

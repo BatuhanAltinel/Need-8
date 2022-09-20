@@ -35,7 +35,6 @@ public class LevelManager : MonoBehaviour
         LevelCheck();
 
         nextLevel = levels[levelNumber];
-        //nextLevel = Instantiate(nextLevel, nextLevel.transform.position, Quaternion.identity);
         nextLevel.SetActive(true);
 
         currentLevel = nextLevel;

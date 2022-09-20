@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 2;
+    [SerializeField] private float moveSpeed = 7;
 
     private Animator anim;
     private Rigidbody myBody;
@@ -38,8 +38,9 @@ public class PlayerController : MonoBehaviour
             if (this.gameObject == GameManager.gameManager.playersList[0])
             {
                 playerNorig.transform.rotation = Quaternion.Euler(0,0,0);
-                //playerNorig.transform.position = new Vector3(0, 0, 0);
+
                 MoveDownQuick();
+
                 transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
                 anim.SetBool("IsSuccess", false);
                 anim.SetInteger("IsRunning", 1);
